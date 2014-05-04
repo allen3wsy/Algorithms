@@ -7,9 +7,10 @@ import java.util.Queue;
 public class cracking_4 {
 	
 	public static void main(String[] args)	{
-		int[] arr = {1,2,3,4,5,6,7,8,9,10};
+		int[] arr = {4,2,6,1,3,5,7};
 		TreeNode<Integer> head = newTree(arr);
-		head.right.right = new TreeNode<Integer>(7);
+
+		
 		DFSinorder(head);
 		System.out.println("\ndepth: " + getHeight(head));
 		BFS(head);
@@ -25,6 +26,8 @@ public class cracking_4 {
 		
 		String s = "abc";
 		
+		head = remove(head, 4);
+		DFSinorder(head);
 		// 4.6
 
 	}
@@ -72,6 +75,76 @@ public class cracking_4 {
 	}
 	
 	/*
+	 * BST lookup */
+	public boolean lookup(TreeNode<Integer> node, int data) { 
+	    
+		if (node == null) 			// exit for the lookup function
+	    	return false; 
+		
+	    if (data == node.data) {     
+	    	return true; 
+	    }	else if (data < node.data) { 
+	      return lookup(node.left, data); 
+	    } else { 
+	      return(lookup(node.right, data)); 
+	    } 
+	}
+	
+	/*
+	 * find Min */
+	public static TreeNode<Integer> findMin(TreeNode<Integer> node)	{
+		if(node == null)	{
+			return null;
+		}
+		while(node.left != null)	{
+			node = node.left;
+		}
+		return node;
+	}
+	
+		
+	/* insert BST using Recursion 
+	 * */
+	public TreeNode<Integer> insert(TreeNode<Integer> node, int t)	{
+		if(node == null)	
+			return new TreeNode<Integer>(t);
+	
+		if(t > node.data)	{
+			node.right = insert(node.right, t);
+		} else if(t < node.data)	{
+			node.left = insert(node.left, t);
+		} else; // do nothing
+		
+		return node;
+	}
+	
+	/* remove element from BST:
+	 * Also using Recursion */
+	public static TreeNode<Integer> remove(TreeNode<Integer> node, int t)	{
+		if(node == null)
+			return node;
+		if(t > node.data)	{	// remember to use recursion right here
+			node.right = remove(node.right, t);
+		} else if(t < node.data)	{
+			node.left = remove(node.left, t);
+		} else {  // t = node.data
+			// only At this circumstance, we need to find the leftmost value
+			// of the right subtree or the rightmost value of the left tree
+			
+			if(node.left != null && node.right != null)	{
+				node.data = findMin(node.right).data;
+				node.right = remove(node.right, node.data);	// data already removed
+			} else if(node.left == null)	{
+				node = node.right;	// node.right may be null or not null
+			} else {
+				node = node.left;  
+			}	
+		}		
+		return node;	// CAUTION: return node
+	}
+	
+	
+	/*
 	 * inorder traversal
 	 */
 	public static void DFSinorder(TreeNode<Integer> head){
@@ -82,6 +155,7 @@ public class cracking_4 {
 		DFSinorder(head.right);
 	}
 	
+	/* BFS using QUEUE */
 	public static void BFS(TreeNode<Integer> head)	{
 		if(head == null)
 			return;
@@ -102,6 +176,18 @@ public class cracking_4 {
 				queue.add(temp.right);			
 			}
 			System.out.println();
+		}
+	}
+	
+	
+	/*
+	 * get the size(): number of nodes
+	 */
+	public int size(TreeNode<Integer> node) { 
+		if (node == null) 
+			return 0; 		
+		else { 
+		    return size(node.left) + 1 + size(node.right); 
 		}
 	}
 	
@@ -171,7 +257,7 @@ public class cracking_4 {
 	public static TreeNode<Integer> createMinimalBST(int[] arr, int left, int right)	{
 		/* The same as binary search */
 		if(left > right)
-			return null;
+			return null;	// THE EXIT
 		
 		int mid = (left + right) / 2;
 		
@@ -179,8 +265,9 @@ public class cracking_4 {
 		n.left = createMinimalBST(arr, left, mid - 1);
 		n.right = createMinimalBST(arr, mid + 1, right);
 		
-		return n;
+		return n; // return the newly created node!
 	}
+	
 	
 	/**
 	 * 4.4

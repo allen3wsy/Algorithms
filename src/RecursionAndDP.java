@@ -27,7 +27,13 @@ public class RecursionAndDP {
 //		
 //		combination("abcd");
 		
-		System.out.println(makeChangeDP(5));
+		//System.out.println(makeChangeDP(5));
+		
+		int[] array = new int[37];
+		String s = "d";
+//		System.out.println(numOfStepDP2(36));	// Allen's version: fastest??
+//		System.out.println(numOfStepDP(36, array));	// not so fast.....
+		System.out.println(numOfStep(36));
 	}
 	
 	/**
@@ -44,10 +50,33 @@ public class RecursionAndDP {
 		if(n < 0) return 0;
 		if(n == 0) return 1;
 		
-		if(arr[n] != 0) return arr[n];
-		arr[n] = numOfStep(n-1)+numOfStep(n-2)+numOfStep(n-3);
+		/* should be like this: 
+		 * not > -1
+		 * */
+		if(arr[n] != 0) 
+			return arr[n];	
+		
+		arr[n] = numOfStepDP(n-1, arr)+numOfStepDP(n-2, arr) + numOfStepDP(n-3, arr);
 		return arr[n];
 	}
+	
+	public static int numOfStepDP2(int n)	{
+		if(n < 0) return 0;
+		if(n == 0) return 1;
+		
+		int[] arr = new int[37];
+		
+		arr[0] = 1;
+		arr[1] = 1;
+		arr[2] = 2;
+		
+		for(int i = 3; i <= arr.length - 1; i++)	{
+			arr[i] = arr[i - 1] + arr[i - 2] + arr[i - 3];
+		}
+		
+		return arr[n];
+	}
+
 	
 	/**
 	 * 9.2
@@ -393,7 +422,8 @@ public class RecursionAndDP {
 			
 			int disCol = Math.abs(col - col1);
 			int disRow = row - i;
-			if(disCol == disRow) return false;
+			if(disCol == disRow) 
+				return false;
 		}
 		return true;
 	}
@@ -446,7 +476,7 @@ public class RecursionAndDP {
 		return h;
 	}
 	
-	//answer
+	// answer
 	public static ArrayList<Box> createStack(Box[] boxs, Box bottom){
 		ArrayList<Box> max_stack = null;
 		int max_height = 0;

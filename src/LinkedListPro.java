@@ -243,6 +243,8 @@ public class LinkedListPro {
 		return head;
 	}
 	
+	
+	
 	/**
 	 * 2.6
 	 */

@@ -68,7 +68,8 @@ public class cracking_3 {
 		s1.enqueue(a);
 		s1.enqueue(b);
 		System.out.println(s1.dequeueAny().name);
-				
+			
+		
 	}
 		
 	/**
@@ -182,6 +183,7 @@ public class cracking_3 {
 	}
 	
 	
+	
 	/**
 	 * 3.5
 	 */
@@ -210,7 +212,8 @@ public class cracking_3 {
 			while(!s1.isEmpty())	{
 				Integer temp = s1.pop();
 				s2.push(temp);
-			}			
+			}
+			
 			return s2.pop();		
 		}
 	}
@@ -228,7 +231,7 @@ public class cracking_3 {
 		}
 				
 		// can also use add
-		public void push(T n){
+		public void push(T n)	{
 			curr.offer(n);
 		}
 		
@@ -237,6 +240,7 @@ public class cracking_3 {
 			if(curr.size() == 0)
 				return null;
 			
+			// poll() n-1 times and leave one element in the first queue
 			for(int i = 0; i < size - 1; i++)	{
 				T v = curr.poll();
 //				//System.out.println(v);
@@ -258,24 +262,26 @@ public class cracking_3 {
 	 * 3.6
 	 */
 	
+	// this sorting algorithm is O(N squared)
 	public static Stack<Integer> sort(Stack<Integer> s)	{
 		Stack<Integer> s2 = new Stack<Integer>();
 		// this is my addition (checking whether s is empty)
 		if(s.isEmpty())	
 			return s;
-		
-		s2.push(s.pop());
+
+		s2.push(s.pop());		// ensure that s2 is not empty already!!!
 		while(!s.isEmpty())	{
 			int temp = s.pop();
-			while(temp < s2.peek())	{
+			// EX: I forgot to make sure that !s2.isEmpty()
+			while(!s2.isEmpty() && temp < s2.peek())	{	// s2 can never be empty so peek() is always right
 				s.push(s2.pop());
 			}
 			s2.push(temp);
 		}			
 		return s2;
 	}
-	
-	
+		
+
 	/**
 	 * 3.7
 	 */

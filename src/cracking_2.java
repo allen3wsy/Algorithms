@@ -8,9 +8,9 @@ public class cracking_2 {
 	public static void main(String[] args)	{
 		int[] arr ={1,1,2,3,5,4,63,7,7,8,8,3,8,8};
 		Node head = newLinkedList(arr);
-		printList(head);
-
 		
+		printList(head);
+	
 		// 2.1
 		removeDup2(head);
 		printList(head);
@@ -207,7 +207,7 @@ public class cracking_2 {
 				result = runner;
 			}
 			else	{
-				// second
+				// second and later
 				runner.next = new Node(sum % 10);
 				runner = runner.next;		// I forgot this one!!! *****
 			}			
@@ -218,8 +218,7 @@ public class cracking_2 {
 		}
 		return result;
 	}
-	
-	
+ 
 	/**
 	 * 2.6
 	 */
@@ -231,14 +230,19 @@ public class cracking_2 {
 		/* This is extremely important because if there is no loop
 		 * Then the fast of fast.next will reach "null"
 		 * */
+		
+		// here we used &&
 		while(fast != null && fast.next != null)	{
 			fast = fast.next.next;
 			slow = slow.next;
 			if(fast == slow)
 				break;
 		}
+		
 		/* Error check: no meeting point, therefore no loop */
-		if(fast != null || fast.next != null)	
+		
+		// EX: here we used ||
+		if(fast == null || fast.next == null)	
 			return null;		
 		slow = head;
 		while(fast != slow)	{
@@ -260,9 +264,8 @@ public class cracking_2 {
 		Stack<Integer> stack = new Stack<Integer>();
 		Node runner = head;
 		while(runner != null)	{
-			stack.push(runner.data);
+			stack.push(runner.data);		// push the data !!
 			runner = runner.next;
-			
 		}
 		
 		runner = head;
@@ -289,8 +292,8 @@ public class cracking_2 {
 			head = forward;			
 		}	
 		return prev;
-		
 	}
+
 	
 	/**
 	 * reverse a doubly linked list without extra space
@@ -298,20 +301,28 @@ public class cracking_2 {
 	/*
 	 * using a temp
 	 * */
-	public static Node reverse(Node head){
+	public static Node reverseDoule(Node head){
 		// error check
 		if(head == null || head.next == null)
 			return head;		
 		Node n = head, next;
-
+		Node prev = null;
+		// n is the runner 
 		while(n != null){
 			next = n.next;
 			n.next = n.prev;
 			n.prev = next;
+			prev = n;		// this is for return!!!
 			n = next;
+
 		}
-		// n is the new head.
-		return n;
+		// prev is the new head.
+		return prev;
+	}
+	
+	public static Node shoot(Node[] head)	{
+		head[0] = head[0].next;
+		return head[0];
 	}
 	
 }

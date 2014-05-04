@@ -2,7 +2,6 @@ import java.util.Scanner;
 
 
 // it's safe to check a whether a string == null and
-// "".equals(string)
 
 // System.out.printf("%-2d ", m[i][j]);
 //	System.out.println(sb.contains(sb)); // true !!!

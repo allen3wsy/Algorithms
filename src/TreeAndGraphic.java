@@ -100,6 +100,7 @@ public class TreeAndGraphic {
 		return true;
 	}
 	
+	
 	public static int depth(BinaryNode<Integer> root){
 		if(root == null)
 			return 0;
@@ -109,10 +110,10 @@ public class TreeAndGraphic {
 		int rightDepth = depth(root.right);
 		if(rightDepth == -1)
 			return -1;
-		if(Math.abs(leftDepth - rightDepth) > 1){
+		if(Math.abs(leftDepth - rightDepth) > 1)	{
 			return -1;
 		}
-		return Math.max(leftDepth, rightDepth)+1;
+		return Math.max(leftDepth, rightDepth) + 1;
 	}
 	
 	public static BinaryNode<Integer> insertBST(BinaryNode<Integer> root, int val){
