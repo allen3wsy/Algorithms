@@ -182,18 +182,18 @@ public class cracking_1 {
 	 * 1.7
 	 * @param arr
 	 */
-	public static void setZero(int[][] matrix)	{
-		int m = matrix.length;
-		int n = matrix[0].length;
+	public void setZeroes(int[][] matrix) {
+        int m = matrix.length;      // row
+		int n = matrix[0].length;   // column
 	
-		int[] row = new int[m];
-		int[] col = new int[n];
+		boolean[] row = new boolean[m];
+		boolean[] col = new boolean[n];     // 2N space
 		
 		for(int i = 0; i < m; i++)	{
 			for(int j = 0; j < n; j++)	{
 				if(matrix[i][j] == 0)	{
-					row[i] = 1;
-					col[j] = 1;
+					row[i] = true;
+					col[j] = true;      // true means this row or column is equal to zero
 				}
 					
 			}
@@ -201,7 +201,7 @@ public class cracking_1 {
 		
 		// set rows to zero
 		for(int i = 0; i < m; i++)	{
-			if(row[i] == 1)	{
+			if(row[i] == true)	{
 				for(int j = 0; j < matrix[0].length; j++)	{
 					matrix[i][j] = 0;
 				}
@@ -209,16 +209,14 @@ public class cracking_1 {
 		}
 		
 		// set columns to zero
-		// set rows to zero
 		for(int j = 0; j < n; j++)	{
-			if(col[j] == 1)	{
+			if(col[j] == true)	{
 				for(int i = 0; i < matrix.length; i++)	{
 					matrix[i][j] = 0;
 				}
 			}			
 		}
-			
-	}
+    }
 	
 	
 	/**
