@@ -1,9 +1,7 @@
+import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-import java.util.List;
-import Algo_Midlevel.Permutation;
-
-import com.sun.org.apache.xalan.internal.xsltc.util.IntegerArray;
 
 public class cracking_9 {
 
@@ -34,6 +32,147 @@ public class cracking_9 {
 		}
 		return arr[n];
 	}
+	
+	/**
+	 * 9.2
+	 * 
+	 * Directly the DP solution
+	 */
+	
+	public static int factorial(int n){
+		if(n == 0) return 1;
+		
+		return n * factorial(n - 1);
+	}
+	
+	public static int numPath(int x, int y){
+		return factorial(x + y) / ( factorial(x) * factorial(y) );
+	}
+	
+	public static int numOfPath(int x, int y){
+		if(x < 0 || y < 0)
+			return 0;
+		if(x == 0 && y == 0)
+			return 1;
+		
+		return numOfPath(x, y-1)+numOfPath(x-1, y);
+	}
+	
+	public static int numOfPathDP(int x, int y, int[][] matrix){
+		if(x < 0 || y < 0)
+			return 0;
+		if(x == 0 && y == 0)
+			return 1;
+		
+		if(matrix[x][y] != 0) return matrix[x][y];
+		matrix[x][y] = numOfPath(x, y - 1) + numOfPath(x - 1, y);
+		return matrix[x][y];
+	}
+	
+	public static int numOfPathWithLimit(int x, int y, int x1, int y1)	{
+		if(x < 0 || y < 0 || (x == x1 && y == y1))
+			return 0;
+	
+		if(x == 0 && y == 0)
+			return 1;
+		
+		return numOfPathWithLimit(x, y - 1, x1, y1) + numOfPathWithLimit(x - 1, y, x1, y1);
+	}
+	
+	private static boolean isFree(int x, int y){
+		return true;
+	}
+	
+	// CTCI: Answer
+	// DP: hashMap
+	public boolean getPath(int x, int y, ArrayList<Point> path, HashMap<Point, Boolean> cache)	{
+		Point p = new Point(x, y);
+		if(cache.containsKey(p))	{ 	// already visited this cell
+			return cache.get(p);
+		}
+		
+		if(x == 0 && y == 0)	{
+			return true;   // Found a path
+		}
+		
+		boolean success = false;
+		if(x >= 1 && isFree(x - 1, y))	{		// Try left
+			success = getPath(x - 1, y, path, cache);	// Free! Go left
+		}
+		
+		if(!success && y >= 1 && isFree(x, y - 1))	{		// Try Up
+			success = getPath(x, y - 1, path, cache);	// Free! Go Up
+		}
+		if(success)	{
+			path.add(p);	// Right way!!! Add to path
+		}
+		cache.put(p, success);
+		return success;
+	}
+	
+	
+	/**
+	 * 9.3
+	 */
+	
+	// recursive
+	// elements are distinct
+	public static int findMagicIndex(int[] array, int left, int right)	{
+		if(right < left || left < 0 || right >= array.length)	{
+			return -1;
+		}
+		int mid = (left + right) / 2;
+		if(array[mid] == mid)	{
+			return mid;
+		} else if(array[mid] > mid) {
+			return findMagicIndex(array, left, mid - 1);
+		}else{ 				// arr[mid] > mid
+			return findMagicIndex(array, mid + 1, right);
+		}
+	}
+	
+	public static int findMagicIndex(int[] array)	{
+		return findMagicIndex(array, 0, array.length - 1);
+	}
+	
+
+	// recursive, FOllOW UP
+	// elements are NOT distinct !!!
+	
+	// EX: if elements are all distinct, this function operates the same
+	// as the above function
+	public static int findMagic(int[] array, int left, int right)	{
+		if(right < left || left < 0 || right >= array.length)	{
+			return -1;
+		}
+		
+		int mid = (left + right) / 2;
+		int midValue = array[mid];
+		if(midValue == mid)	{
+			return mid;
+		}
+		
+		/* search left, if we can find the magic number from the 
+		 * left side, then we don't have to search right....
+		 */
+		int leftIndex = Math.min(mid - 1, midValue);			// Math.min
+		int leftResult = findMagic(array, left, leftIndex);
+		if(leftResult >= 0)	{		// if leftResult is not -1, which means found !!! 
+			return leftResult;		// then don't have to consider right side....
+		}
+		
+		/* search right */
+		int rightIndex = Math.max(mid + 1, midValue);			// Math.max()
+		int rightResult = findMagic(array, rightIndex, right);
+		
+		return rightResult;			// 
+	}
+	
+	public static int findMagic(int[] array)	{
+		return findMagicIndex(array, 0, array.length - 1);
+	}
+	
+	
 	
 	/**
 	 * 9.4
@@ -219,6 +358,10 @@ public class cracking_9 {
 	/**
 	 * 9.9
 	 */
+    /**
+     * Can also reference the Leetcode solution.....
+     */
+    
 	static int number_of_kind = 0; // the total number of kinds of n-Queen
 									// placement
 	static int GRID_SIZE = 8;
@@ -251,7 +394,7 @@ public class cracking_9 {
 	 * Check if (row, column) is a valid spot for a queen by checking
 	 * if there is a queen in the same column or diagonal. We don't
 	 * need to check it for queens in the same row because the calling
-	 * place Queen only attempts to place one queen at a time. We know this row is empty.
+	 * place Queen only attempts to place one queen at a time. We know this row is empty ALREADY.
 	 */
 	public static boolean checkValid(Integer[] columns, int row, int col) {
 		for (int i = 0; i < row; i++) {
@@ -274,6 +417,8 @@ public class cracking_9 {
 		// 9.1
 		System.out.println(numOfStepDP(5, 3) + " ways to take steps");
 		
+		// 9.2
+		// 9.3
 		// 9.4
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		list.add(1);
@@ -295,6 +440,8 @@ public class cracking_9 {
 		System.out.println("all the parentheses: ");
 		System.out.println(result);
 		
+		// 9.7
+		
 		// 9.8
         // we should try passing in 25 & 26 to see the diff
         // and also notice that the order of printed map[amount][index] to see how it works recursively
@@ -307,5 +454,26 @@ public class cracking_9 {
 		placeQueens(0, cols, list2);
 		// ****
 		
+		// 9.10
+		
+		
 	}
 }
+
+////for 9.2
+//class Point{
+//	int x,y;
+//	public Point(int x, int y){
+//		this.x = x;
+//		this.y = y;
+//	}
+//	
+//	public void print(){
+//		System.out.println("("+x+","+y+")");
+//	}
+//}
+//
+////for 9.10
+//class Box{
+//	int w, h, d;
+//}
