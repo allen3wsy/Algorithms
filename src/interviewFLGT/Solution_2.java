@@ -1,4 +1,4 @@
-package Amazon;
+package interviewFLGT;
 // you can also use imports, for example:
 // import java.math.*;
 import java.util.*;

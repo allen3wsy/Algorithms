@@ -1,4 +1,4 @@
-package Algo_Midlevel;
+package algo_Midlevel;
 public class Palindrome{
 	public Palindrome(){
 		

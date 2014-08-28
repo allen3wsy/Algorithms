@@ -1,4 +1,4 @@
-package Amazon;
+package interviewFLGT;
 
 import java.util.Iterator;
 import java.util.LinkedList;

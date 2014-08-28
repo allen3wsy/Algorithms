@@ -1,4 +1,4 @@
-package Algo_Midlevel;
+package algo_Midlevel;
 //The longest common subsequence of two string
 public class LCsubsequence{
 	

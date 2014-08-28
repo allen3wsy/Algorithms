@@ -21,7 +21,7 @@ public class cracking_9 {
 	public static int numOfStepDP(int n, int m, int[] arr) {
 		if (n < 0)
 			return 0;
-		if (n == 0)
+		if (n == 0)			//  if (n == 1):  also return 1........
 			return 1;
 
 		if (arr[n] != 0)		// DP here
@@ -85,7 +85,7 @@ public class cracking_9 {
 	
 	// CTCI: Answer
 	// DP: hashMap
-	public boolean getPath(int x, int y, ArrayList<Point> path, HashMap<Point, Boolean> cache)	{
+	public static boolean getPath(int x, int y, ArrayList<Point> path, HashMap<Point, Boolean> cache)	{
 		Point p = new Point(x, y);
 		if(cache.containsKey(p))	{ 	// already visited this cell
 			return cache.get(p);
@@ -418,6 +418,32 @@ public class cracking_9 {
 		System.out.println(numOfStepDP(5, 3) + " ways to take steps");
 		
 		// 9.2
+		// getPath
+		System.out.println("numPath (1): ");
+		System.out.println(numPath(2, 2));
+		
+		System.out.println("numPath (2): ");
+        System.out.println(numOfPath(1, 2));
+        
+        int row = 0;
+        int col = 1;
+        int[][] matrix = new int [row + 1][col + 1];
+        
+        System.out.println("numPath (DP): ");
+        System.out.println(numOfPathDP(row, col, matrix));
+        
+        
+        int x = 2;
+        int y = 3;
+        ArrayList<Point> path = new ArrayList<Point>();
+        HashMap<Point, Boolean> cache = new HashMap<Point, Boolean>();
+        
+        System.out.println("getPath (print all the points): ");
+        System.out.println(getPath(x, y, path, cache));
+        for(Point p : path) {
+            System.out.println(p.x + " " + p.y);
+        }
+
 		// 9.3
 		// 9.4
 		ArrayList<Integer> list = new ArrayList<Integer>();
@@ -473,7 +499,16 @@ public class cracking_9 {
 //	}
 //}
 //
-////for 9.10
-//class Box{
-//	int w, h, d;
+
+//for 9.10
+//class Box {
+//    
+//    Box() {}
+//    Box(int height, int width, int length) {
+//        h = height;
+//        w = width;
+//        l = length;
+//    }
+//    public int w, h, l;
 //}
+

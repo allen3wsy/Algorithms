@@ -1,4 +1,4 @@
-package Amazon;
+package interviewFLGT;
 
 public class Solution_1 {
 

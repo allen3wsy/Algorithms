@@ -1,4 +1,4 @@
-package Algo_Midlevel;
+package algo_Midlevel;
 import java.util.ArrayList;
 
 // not yet !!
