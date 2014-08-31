@@ -2,10 +2,9 @@ package leetcode;
 
 import java.util.Stack;
 
-public class evaluateRPN {
+public class EvaluateReversePolishNotation {
 
     public static int evalRPN(String[] tokens) {
-        int result = 0;
 		Stack<String> stack = new Stack<String>();
 		
 		for(String str : tokens) {

@@ -13,7 +13,6 @@ public class GenerateParenthesis {
     
     // it's like a tree structure: either you go left or right:
     // For example: if n is 3: then you can build a special tree (5 total results)
-    
     public static void generate(int n, String s, int l, int r, ArrayList<String> result)   {
             if(l == n)	{       // the only possibility is to append ")"
             	StringBuilder sb = new StringBuilder(s);
@@ -38,8 +37,6 @@ public class GenerateParenthesis {
     	ArrayList<String> result = new ArrayList<String>();
     	result = generateParenthesis(4);
     	System.out.println(result);
-    	
     }
-
 }
 

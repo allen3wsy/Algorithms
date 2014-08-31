@@ -1,6 +1,6 @@
 package leetcode;
 
-public class UniqueBST {
+public class UniqueBinarySearchTree {
 
 	// DP solution 
     public int numTrees(int n) {
