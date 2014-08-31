@@ -1,6 +1,6 @@
 package leetcode;
 
-public class ClimbStairs {
+public class ClimbingStairs {
 
 	public static int climbStairs(int n) {
 		int[] A = new int[n + 1];

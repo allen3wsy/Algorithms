@@ -17,7 +17,7 @@ import java.util.HashMap;
  *
  * Also, we can consider sort the string first
  */
-public class Anagram {
+public class Anagrams {
     // dict c -> count
     // represent a anagram group
 	
@@ -65,7 +65,7 @@ public class Anagram {
 
     public static void main(String[] args){
         String[] strs = {"cat","rye","aye","dog", "god","cud","cat","old","fop","bra"};
-        Anagram a = new Anagram();
+        Anagrams a = new Anagrams();
         ArrayList<String> anagramList = a.anagrams(strs);
         for (String str: anagramList){
             System.out.println(str);

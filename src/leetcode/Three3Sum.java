@@ -3,7 +3,7 @@ package leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class ThreeSum {
+public class Three3Sum {
 	
 	public static ArrayList<ArrayList<Integer>> threeSum(int[] num) {
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();

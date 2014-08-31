@@ -2,7 +2,7 @@ package leetcode;
 import java.util.HashMap;
 
 // assume the input is valid
-public class RomanToInt {
+public class RomanToInteger {
 
     public static int romanToInt(String s) {
         

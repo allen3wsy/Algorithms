@@ -2,7 +2,7 @@ package leetcode;
 
 import java.util.ArrayList;
 
-public class GenerateParenthesis {
+public class GenerateParentheses {
 
     public static ArrayList<String> generateParenthesis(int n) {
         ArrayList<String> result = new ArrayList<String>();	    // a null result
