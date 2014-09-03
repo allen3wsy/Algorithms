@@ -1,4 +1,4 @@
-package algo_Midlevel;
+package test;
 
 public class DecimalRepresentation {
 
