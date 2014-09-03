@@ -1,5 +1,3 @@
-/Algo_Midlevel
-/Amazon
 /Animal.class
 /ArrayAndString.class
 /BinaryNode.class
@@ -38,6 +36,7 @@
 /StackAndQueue.class
 /ThreeKingdom.class
 /TreeAndGraphic.class
+/algo_Midlevel
 /cracking_1.class
 /cracking_11.class
 /cracking_2.class
@@ -56,8 +55,6 @@
 /cracking_7.class
 /cracking_9$Color.class
 /cracking_9.class
+/interviewFLGT
 /leetcode
 /test
-/algo_Midlevel
-/flgt
-/interviewFLGT
