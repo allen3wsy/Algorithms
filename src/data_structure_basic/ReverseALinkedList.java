@@ -1,4 +1,4 @@
-package Data_structure_basic;
+package data_structure_basic;
 
 /**
  * This is a basic question being asked a lot !!!

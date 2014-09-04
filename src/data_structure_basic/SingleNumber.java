@@ -1,4 +1,4 @@
-package Data_structure_basic;
+package data_structure_basic;
 
 /* The advanced class of this is not solved yet.
  * 

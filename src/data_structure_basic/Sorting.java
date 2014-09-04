@@ -1,4 +1,4 @@
-package Data_structure_basic;
+package data_structure_basic;
 public class Sorting {
 
 	public static void main(String[] args)	{

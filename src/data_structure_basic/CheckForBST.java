@@ -1,4 +1,4 @@
-package Data_structure_basic;
+package data_structure_basic;
 import java.util.LinkedList;
 import java.util.Queue;
 
