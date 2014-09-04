@@ -1,4 +1,4 @@
-package data_structure_basic;
+package basic_data_structure;
 
 // This node is for a singly linked list 
 public class Node {

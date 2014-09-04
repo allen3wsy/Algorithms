@@ -1,4 +1,4 @@
-package algo_Midlevel;
+package mid_level_algorithm;
 import java.util.ArrayList;
 
 

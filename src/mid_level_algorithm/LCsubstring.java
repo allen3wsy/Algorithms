@@ -1,4 +1,4 @@
-package algo_Midlevel;
+package mid_level_algorithm;
 public class LCsubstring{
 
 	/*
