@@ -27,4 +27,5 @@ public class PalindromePartitioning2 {
 
 		return D[0];
 	}
+	
 }

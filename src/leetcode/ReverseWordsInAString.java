@@ -10,6 +10,7 @@ public class ReverseWordsInAString {
 		String[] arr = s.split(" ");
 
 		StringBuilder sb = new StringBuilder();
+
 		for (String str : arr) {
 			if (!str.equals("")) {
 				sb.insert(0, str);
@@ -17,7 +18,7 @@ public class ReverseWordsInAString {
 			}
 		}
 
-		return sb.toString().trim();   // 
+		return sb.toString().trim();
 	}
 
 	public static void main(String[] args) {

@@ -8,7 +8,12 @@ import javax.swing.JOptionPane;
 public class ScannerTest {
 
 	public static void main(String args[]) throws IOException {
-
+		float f = 10/(3.0f);
+		float f2 = 10/3;   // (3 -> 3.0)
+		System.out.println(f);
+		System.out.println(f2);
+		
+		
 		// Java Exmaple to get input from user from command prompt
 		System.out.println("Please enter input from command prompt: ");
 		Scanner scanner = new Scanner(System.in);

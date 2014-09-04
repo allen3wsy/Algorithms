@@ -48,11 +48,11 @@ public class ReorderList {
 		}
 	}
 
+	// helper
 	public static ListNode reverseOrder(ListNode head) {
 
-		if (head == null || head.next == null) {
+		if (head == null || head.next == null)
 			return head;
-		}
 
 		ListNode pre = head;
 		ListNode curr = head.next;
@@ -66,7 +66,6 @@ public class ReorderList {
 
 		// set head node's next
 		head.next = null;
-
 		return pre;
 	}
 
@@ -78,7 +77,7 @@ public class ReorderList {
 		}
 		System.out.println();
 	}
-	
+
 	public static void main(String[] args) {
 		ListNode n1 = new ListNode(1);
 		ListNode n2 = new ListNode(2);
