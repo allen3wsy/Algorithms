@@ -32,9 +32,9 @@ public class ReverseALinkedList {
 			return; // since this is the base case
 		}
 
-		recursiveReverse(node.next); // Recurse !!!
-		node.next.next = node; // REMEMBER THIS !!!!!!!
-		node.next = null; // set "old" next pointer to NULL
+		recursiveReverse(node.next);	// Recurse !!!
+		node.next.next = node;			// REMEMBER THIS !!!!!!!
+		node.next = null; 				// set "old" next pointer to NULL
 	}
 
 	public static ListNode revereseOrder(ListNode head) {
