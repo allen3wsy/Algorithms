@@ -14,7 +14,7 @@ public class ConvertSortedListToBinarySearchTree {
 	
 	static ListNode list;
 
-	public TreeNode sortedListToBST(ListNode head) {
+	public static TreeNode sortedListToBST(ListNode head) {
 		ListNode r = head;
 		int length = 0;
 		while (r != null) {
@@ -28,7 +28,7 @@ public class ConvertSortedListToBinarySearchTree {
 
 	// EX: one is ListNode, one is TreeNode !
 	// don't confuse them
-	TreeNode sortedBST(ListNode[] list, int start, int end) {
+	public static TreeNode sortedBST(ListNode[] list, int start, int end) {
 		if (start > end)
 			return null;
 

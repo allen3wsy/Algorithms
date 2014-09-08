@@ -4,10 +4,6 @@ package mid_level_algorithm;
 // binarySearch
 
 public class Permutation {
-	public static void main(String[] args) {
-		permutation("abcd");
-	}
-
 	/*
 	 * permutation
 	 */
@@ -36,6 +32,11 @@ public class Permutation {
 			used[i] = false;
 			out.setLength(out.length() - 1);
 		}
-
 	}
+	
+	public static void main(String[] args) {
+		permutation("abcd");
+	}
+	
+	
 }
