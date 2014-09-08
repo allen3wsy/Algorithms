@@ -26,11 +26,8 @@ public class EditDistance {
 
 				if (c1 == c2) { // equal, copy upperLeft value
 					result[i][j] = result[i - 1][j - 1];
-				} else {
-					int tempMin = Math.min(result[i - 1][j], result[i][j - 1]);
-					int min = Math.min(tempMin, result[i - 1][j - 1]);
-					result[i][j] = min + 1; // EX: the min of the three and + 1
-											// to this
+				} else {		// EX: the (min of the three) and then + 1
+					result[i][j] = Math.min(Math.min(result[i - 1][j], result[i][j - 1]), result[i - 1][j - 1]) + 1;
 				}
 			}
 		}

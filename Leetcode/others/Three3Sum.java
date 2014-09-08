@@ -36,16 +36,12 @@ public class Three3Sum {
     					    end--;
                     } else if(num[start] + num[end] < negate)   {
                         start++;
-                    } else {
+                    } else { // num[start] + num[end] > negate
                         end--;
                     }
-                    
     			}
-     
     		}
         }
         return result;
-        
     }
-	
 }
