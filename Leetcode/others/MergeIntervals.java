@@ -31,10 +31,9 @@ public class MergeIntervals {
 
 	public ArrayList<Interval> merge(ArrayList<Interval> intervals) {
 
-		if (intervals == null || intervals.size() <= 1) // EX: for the algo
-														// below, should be at
-														// least 2
-			return intervals; // intervals !!!
+		// EX: for the algo below, should be at least 2 intervals !!!
+		if (intervals == null || intervals.size() <= 1) 
+			return intervals; 
 
 		// sort intervals by using self-defined Comparator
 		Collections.sort(intervals, new IntervalComparator()); 

@@ -24,7 +24,6 @@ public class Logging {
 	 * This will print a message to the screen: sample call:
 	 * Logging.getSingleton().log("testing message");
 	 */
-
 	public void log(String message) {
 		System.out.println(System.currentTimeMillis() + ": " + message);
 	}

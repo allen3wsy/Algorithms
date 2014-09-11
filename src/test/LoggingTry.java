@@ -10,7 +10,6 @@ public class LoggingTry {
 		loggingObject.log("hihi");
 		
 		if(loggingObject == loggingObject2)
-			System.out.println("LoggingTry.main()");
-		
+			System.out.println("They are actually the same object !!!");
 	}
 }
