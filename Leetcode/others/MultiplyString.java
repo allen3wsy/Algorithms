@@ -4,8 +4,8 @@ public class MultiplyString {
    
 	// http://blog.csdn.net/fightforyourdream/article/details/17370495
     public static String multiply(String num1, String num2) {
-        String n1 = new StringBuilder(num1).reverse().toString();  
-        String n2 = new StringBuilder(num2).reverse().toString();  
+        String n1 = new StringBuilder(num1).reverse().toString();
+        String n2 = new StringBuilder(num2).reverse().toString();
           
         // d[] array is the array for   
         int[] d = new int[n1.length() + n2.length()];       

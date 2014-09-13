@@ -2,39 +2,59 @@ package others;
 
 public class SetMatrixZeroes {
 
+	// http://www.programcreek.com/2012/12/leetcode-set-matrix-zeroes-java/
+	// 1. check if first row and column are zero or not
+	// 2. mark zeros on first row and column
+	// 3. use mark to set elements
+	// 4. set first column and row by using marks in step 1
 	public void setZeroes(int[][] matrix) {
-		int m = matrix.length; // row
-		int n = matrix[0].length; // column
+		boolean firstRowZero = false;
+		boolean firstColumnZero = false;
 
-		boolean[] row = new boolean[m];
-		boolean[] col = new boolean[n]; // 2N space
+		// set first row and column zero or not
+		for (int i = 0; i < matrix.length; i++) {
+			if (matrix[i][0] == 0) {
+				firstColumnZero = true;
+				break;
+			}
+		}
 
-		for (int i = 0; i < m; i++) {
-			for (int j = 0; j < n; j++) {
+		for (int i = 0; i < matrix[0].length; i++) {
+			if (matrix[0][i] == 0) {
+				firstRowZero = true;
+				break;
+			}
+		}
+
+		// mark zeros on first row and column
+		for (int i = 1; i < matrix.length; i++) {
+			for (int j = 1; j < matrix[0].length; j++) {
 				if (matrix[i][j] == 0) {
-					row[i] = true;
-					col[j] = true; // true means this row or column is equal to
-									// zero
+					matrix[i][0] = 0;
+					matrix[0][j] = 0;
 				}
 			}
 		}
 
-		// set rows to zero
-		for (int i = 0; i < m; i++) {
-			if (row[i] == true) {
-				for (int j = 0; j < matrix[0].length; j++) {
+		// use mark to set elements
+		for (int i = 1; i < matrix.length; i++) {
+			for (int j = 1; j < matrix[0].length; j++) {
+				if (matrix[i][0] == 0 || matrix[0][j] == 0) {
 					matrix[i][j] = 0;
 				}
 			}
 		}
 
-		// set columns to zero
-		for (int j = 0; j < n; j++) {
-			if (col[j] == true) {
-				for (int i = 0; i < matrix.length; i++) {
-					matrix[i][j] = 0;
-				}
-			}
+		// set first column and row
+		if (firstColumnZero) {
+			for (int i = 0; i < matrix.length; i++)
+				matrix[i][0] = 0;
 		}
+
+		if (firstRowZero) {
+			for (int i = 0; i < matrix[0].length; i++)
+				matrix[0][i] = 0;
+		}
+
 	}
 }

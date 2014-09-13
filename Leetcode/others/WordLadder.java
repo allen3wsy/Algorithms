@@ -1,11 +1,12 @@
 package others;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Set;
 
 public class WordLadder {
 
-	public int ladderLength(String start, String end, Set<String> dict) {
+	public static int ladderLength(String start, String end, Set<String> dict) {
 		if (dict.size() == 0)
 			return 0;
 		LinkedList<String> wordQueue = new LinkedList<String>();
@@ -41,5 +42,14 @@ public class WordLadder {
 		}
 		return 0; // if wordQueue is empty and still didn't return the result,
 					// then 0 means NOT FOUND
+	}
+	
+	public static void main(String[] args) {
+		Set<String> dict = new HashSet<String>();
+		dict.add("dag");	// should contained !!!
+//		dict.add("dog");   // start
+		dict.add("dig");   // end
+		
+		System.out.println(ladderLength("dog", "dig", dict));
 	}
 }

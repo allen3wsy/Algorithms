@@ -1,10 +1,7 @@
 package basic_data_structure;
 
 /**
- * 
  * @author Allen: KL's recursion
- *
- *
  */
 public class ArrayRotation {
 

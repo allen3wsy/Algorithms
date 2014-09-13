@@ -3,7 +3,7 @@ package others;
 public class ImplementStrStr {
 
 	public String strStr(String haystack, String needle) {
-        int needleLen = needle.length();
+		int needleLen = needle.length();
     	int haystackLen = haystack.length();
      
     	if (needleLen == haystackLen && needleLen == 0)     // if both lengths are 0.
@@ -17,13 +17,13 @@ public class ImplementStrStr {
     	    if(haystackLen - i < needleLen)         // don't do unnecessary operations
     	        return null;
     	        
-    	    int k = i;      // k is for: haystack
-    	    int j = 0;      // j is for: needle
+    	    int h = i;      // h is for: haystack
+    	    int n = 0;      // n is for: needle
     	    
-    	    while(j < needleLen && k < haystackLen && needle.charAt(j) == haystack.charAt(k)) {
-    	        j++;
-    	        k++;
-    	        if(j == needleLen) {
+    	    while(n < needleLen && h < haystackLen && needle.charAt(n) == haystack.charAt(h)) {
+    	        n++;
+    	        h++;
+    	        if(n == needleLen) {
     	            return haystack.substring(i);
     	        }
     	    }

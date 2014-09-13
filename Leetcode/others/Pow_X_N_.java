@@ -8,12 +8,12 @@ public class Pow_X_N_ {
 		if (n == 1)
 			return x;
 
-		double v = power(x, n / 2); // (1 / 2) == 0 which means it // will go to
+		double temp = power(x, n / 2); // (1 / 2) == 0 which means it // will go to
 									// the base case: (n == 0), return 1
 		if (n % 2 == 0) {
-			return v * v;
+			return temp * temp;
 		} else {
-			return v * v * x;
+			return temp * temp * x;
 		}
 	}
 

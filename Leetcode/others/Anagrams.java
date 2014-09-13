@@ -1,7 +1,10 @@
 package others;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 /*
  * Title: Anagrams
@@ -18,57 +21,52 @@ import java.util.HashMap;
  * Also, we can consider sort the string first
  */
 public class Anagrams {
-    // dict c -> count
-    // represent a anagram group
-	
-	/* In this way: every string corresponds to a HashMap */
-    private HashMap<Character, Integer> getCharCount(String s){
-        HashMap<Character, Integer> countMap = new HashMap<Character, Integer>();
-        for (int i = 0; i < s.length(); i++){
-            char c = s.charAt(i);
-            if (countMap.containsKey(c)){
-                countMap.put(c, countMap.get(c) + 1);	// rewrite the old value
-                										// and plus 1
-            }
-            else
-                countMap.put(c, 1);
-        }
-        return countMap;
-    }
 
-    public ArrayList<String> anagrams(String[] strs) {
-        // groupid -> the String[id] of the first occurence (used to print the old one)
-        // if appear 2nd time, add the first, !! output the first and itself 
-    	// and set the whole thing to -1
-    	
-        HashMap<HashMap<Character, Integer>, Integer> group = 
-            new HashMap<HashMap<Character, Integer>, Integer>();
-        ArrayList<String> result = new ArrayList<String>();
-        
-        for (int i = 0; i < strs.length; i++)	{
-            String str = strs[i];
-            HashMap<Character, Integer> countMap = getCharCount(str);
-            if (group.containsKey(countMap))	{
-                int firstIdx = group.get(countMap);
-                if (firstIdx != -1)	{
-                    result.add(strs[firstIdx]);	// add the previous one to result
-                    group.put(countMap, -1);
-                }
-                result.add(str);
-            }
-            else{
-                group.put(countMap, i);
-            }
-        }
-        return result;
-    }
+	// http://blog.csdn.net/fightforyourdream/article/details/14217985
+	public ArrayList<String> anagrams(String[] strs) {
+		ArrayList<String> result = new ArrayList<String>();
+		if (strs.length <= 1)
+			return result;
 
-    public static void main(String[] args){
-        String[] strs = {"cat","rye","aye","dog", "god","cud","cat","old","fop","bra"};
-        Anagrams a = new Anagrams();
-        ArrayList<String> anagramList = a.anagrams(strs);
-        for (String str: anagramList){
-            System.out.println(str);
-        }
-    }
+		Map<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+
+		for (int i = 0; i < strs.length; ++i) {
+			String newstring = sortStr(strs[i]);
+			ArrayList<String> val = map.get(newstring);
+			if (val != null) {
+				val.add(strs[i]);
+			} else {
+				val = new ArrayList<String>();
+				val.add(strs[i]);
+				map.put(newstring, val);
+			}
+		}
+
+		Set<String> keys = map.keySet();
+		// put result into the string
+		for (String s : keys) {
+			ArrayList<String> val = map.get(s);
+			if (val.size() > 1) {
+				result.addAll(val);
+			}
+		}
+		return result;
+	}
+
+	// sort the string to get the key for the hashMap
+	public String sortStr(String s) {
+		char[] c = s.toCharArray();
+		Arrays.sort(c);
+		return new String(c);
+	}
+
+	public static void main(String[] args) {
+		String[] strs = { "cat", "rye", "aye", "dog", "god", "cud", "cat",
+				"old", "fop", "bra" };
+		Anagrams a = new Anagrams();
+		ArrayList<String> anagramList = a.anagrams(strs);
+		for (String str : anagramList) {
+			System.out.println(str);
+		}
+	}
 }
