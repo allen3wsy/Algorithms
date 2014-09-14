@@ -23,7 +23,6 @@ public class InsertInterval {
 			Interval newInterval) {
 
 		ArrayList<Interval> result = new ArrayList<Interval>();
-
 		for (Interval interval : intervals) {
 			if (interval.end < newInterval.start) { // note: cannot be <= (must
 													// be <)
@@ -37,7 +36,6 @@ public class InsertInterval {
 						interval.start),
 						Math.max(newInterval.end, interval.end));
 			}
-
 		}
 		result.add(newInterval);
 		return result;
