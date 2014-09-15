@@ -10,42 +10,37 @@ public class BinaryTreeZigzagLevelOrderTraversal {
 		if (root == null)
 			return result;
 
-		boolean order = true; // second line : right to left
-		ArrayList<TreeNode> toVisit = new ArrayList<TreeNode>();
-		toVisit.add(root);
+		boolean reverseOrder = true; // second line : right to left
 
-		while (!toVisit.isEmpty()) {
-			ArrayList<TreeNode> next = new ArrayList<TreeNode>();
-			ArrayList<Integer> temp = new ArrayList<Integer>();
+		ArrayList<TreeNode> currentLevel = new ArrayList<TreeNode>();
+		currentLevel.add(root);
+
+		while (!currentLevel.isEmpty()) {
+			ArrayList<TreeNode> nextLevel = new ArrayList<TreeNode>();
+
 			// everytime the temp ArrayList<> should be newed
-
-			for (TreeNode node : toVisit) {
+			ArrayList<Integer> temp = new ArrayList<Integer>();
+			for (TreeNode node : currentLevel)
 				temp.add(node.val);
-			}
-
 			result.add(temp); // finished one line
 
 			// always traverse the ArrayList: from right to left
-			for (int i = toVisit.size() - 1; i >= 0; i--) {
-				TreeNode node = toVisit.get(i);
-				if (order) { // second line: right to left
+			for (int i = currentLevel.size() - 1; i >= 0; i--) {
+				TreeNode node = currentLevel.get(i);
+				if (reverseOrder) { // second line: right to left
 					if (node.right != null)
-						next.add(node.right);
+						nextLevel.add(node.right);
 					if (node.left != null)
-						next.add(node.left);
+						nextLevel.add(node.left);
 				} else {
 					if (node.left != null)
-						next.add(node.left);
+						nextLevel.add(node.left);
 					if (node.right != null)
-						next.add(node.right);
+						nextLevel.add(node.right);
 				}
 			}
-			order = !order; // changing the order from left to right
-			toVisit = next; // the way of copying one ArrayList to another
-							// ArrayList<>
-
-			// toVisit = new ArrayList<TreeNode>(next);
-			// don't have to do this really
+			reverseOrder = !reverseOrder; // changing the order
+			currentLevel = nextLevel; // copying one ArrayList to another
 		}
 
 		return result;

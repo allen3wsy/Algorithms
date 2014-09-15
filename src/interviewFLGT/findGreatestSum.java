@@ -1,47 +1,49 @@
 package interviewFLGT;
 
 // DONE!
-
 public class findGreatestSum {
 
-	public static void findGreatestSum()	{
-//		Scanner s = new Scanner(System.in);
-//		String[] arrstr = s.nextLine().split(" ");
-//		int[] arr = new int[arrstr.length];
-//		for(int i=0; i<arr.length; i++){
-//			arr[i]=Integer.parseInt(arrstr[i]);
-//			//System.out.println(arr[i]);
-//		}
-		int[] arr = {1, -2, 3, 10, -4, 7, 2, -5};
-		int max = 0;
+	public static void findGreatestSum() {
+
+		int[] arr = { 1, -2, 3, 10, -4, 7, 2, -5, -10000, 10000 };
+		int finalMax = 0;
 		int currMax = 0;
-		int start = 0, end = 0;
-		for(int i = 0; i < arr.length; i++) {
+
+		int recent_start = 0;
+		int finalEndPosition = 0;
+		int finalStartPosition = 0;
+
+		for (int i = 0; i < arr.length; i++) {
 			currMax += arr[i];
-			if(currMax < 0)	{         //no contribution to latter sub arr
+			if (currMax < 0) { // no contribution to latter sub arr
 				currMax = 0;
-				start = i + 1;
+				recent_start = i + 1; // this statement is important !!!
 			}
-			if(currMax > max){
-				max = currMax;
-				end = i;
+			if (currMax > finalMax) {
+				finalMax = currMax;
+				finalEndPosition = i;
+				finalStartPosition = recent_start;
 			}
 		}
-		
-		if(max == 0) {   //	if all elements are negative
-			max = arr[0];
-			for(int i = 0; i < arr.length; i++)	{
-				if(max < arr[i])	{
-					max = arr[i];
-					start = end = i;
+
+		if (finalMax == 0) { // Special case: if all elements are negative !
+			finalMax = arr[0];
+			for (int i = 0; i < arr.length; i++) {
+				if (finalMax < arr[i]) {
+					finalMax = arr[i];
+					finalStartPosition = finalEndPosition = i;
 				}
 			}
 		}
-		
-		System.out.println("The max sum is " + max + " position:" + start + "," + end);
+
+		System.out.println("The max sum is " + finalMax + " position:"
+				+ finalStartPosition + "," + finalEndPosition);
 	}
-	
-	public static void main(String[] args)	{
+
+	public static void main(String[] args) {
+
+		// start position is wrong !!!
+		// but end position is right !!!
 		findGreatestSum();
 	}
 }
