@@ -2,23 +2,23 @@ package others;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Permutations2 {
 
-public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
+	public static ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
         
         ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
         ArrayList<Integer> temp = new ArrayList<Integer>();
         int n = num.length;
         boolean[] visited = new boolean[n];
         
-        Arrays.sort(num);    // diff: this one should be different from Permutation I
+        Arrays.sort(num);  // diff: this one should be different from Permutation I
         permuteHelper(result, temp, num, visited);
         return result;
-        
     }
     
-    public void permuteHelper(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> temp, int[] num, boolean[] visited)    {
+    public static void permuteHelper(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> temp, int[] num, boolean[] visited)    {
         if(temp.size() == num.length)   {
             result.add(new ArrayList<Integer>(temp));
             return;
@@ -28,12 +28,11 @@ public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
             if(!visited[i]) {
                 visited[i] = true;
                 temp.add(num[i]);
-                
+                System.out.println(temp);
                 permuteHelper(result, temp, num, visited);
-                
                 visited[i] = false;
-                temp.remove(temp.size() - 1);       
-                
+                temp.remove(temp.size() - 1);
+                System.out.println(temp);
                 // skip the duplicates:  AFTER REMOVE !!! so that 
                 // these 2 lines are for removing duplicates !!!
                 while(i + 1 < num.length && num[i + 1] == num[i])  { // diff: this one should be different from Permutation I
@@ -42,4 +41,10 @@ public ArrayList<ArrayList<Integer>> permuteUnique(int[] num) {
             }
         }
     }
+    
+    public static void main(String[] args) {
+		int[] num = {1, 1, 1, 4};
+    	System.out.println(permuteUnique(num));
+    	
+	}
 }

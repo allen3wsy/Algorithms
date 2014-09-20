@@ -1,7 +1,5 @@
 package others;
 
-import java.util.Scanner;
-
 /*
  Validate if a given string is numeric.
 
@@ -17,74 +15,68 @@ import java.util.Scanner;
 public class ValidNumber {
 
 	// http://rleetcode.blogspot.com/2014/01/valid-number-java.html
+	// 'e' is the MOST DIFFICULT PART !!!
 	public static boolean isNumber(String s) {
 
-		if (s == null) {
+		if (s == null)
 			return false;
-		}
 
 		// trim off head and tail zeros which not affect result
 		s = s.trim();
-		if (s.length() == 0) {
+		if (s.length() == 0)
 			return false;
-		}
 
-		boolean hasNum = false;
 		boolean canSign = true;
 		boolean canDot = true;
-
+		boolean hasNum = false;
+		
 		boolean canE = false;
 		boolean hasE = false;
 
 		for (int i = 0; i < s.length(); i++) {
 			char c = s.charAt(i);
 
-//			if (c == ' ') {  			// cannot have ' ' in the middle of the string ()
-//				return false;
-//			}
-
-			if (c == '+' || c == '-') { // can only have one-time sign !!!
+			if (c == '+' || c == '-') {
 				if (!canSign)
-					return false;
-
+					return false; // can only have one-time sign !!!
 				canSign = false;
 				continue; // continue
 			}
 
 			if (c == '.') {
-				if (!canDot) 	 // can only have one-time dot !!!
-					return false;
+				if (!canDot)
+					return false; // can only have one-time dot !!!
 				canDot = false;
 				canSign = false; // no sign after '.'
-				continue; 		 // continue
+				continue; // continue
 			}
 
-			if (c == 'e') {
-				if (!canE || hasE)		// canE and hasE together ...
+			if (c == 'e') { // 'e' is the MOST DIFFICULT PART
+				if (!canE || hasE) // canE and hasE together ...
 					return false;
 
-				canE = false;		// can only have 1 'e'
+				canE = false; // can only have 1 'e'
 				hasE = true;
-				hasNum = false;		// if this char is 'e', then it is temporarily not number until next digit
-				canDot = false;		// no dot after 'e'. Actually it DEPENDS: .....
-				canSign = true;		// can have another sign after 'e'
+				hasNum = false; // if this char is 'e', then it is temporarily
+								// not number until next digit
+				canDot = false; // no dot after 'e'. Actually it DEPENDS: .....
+				canSign = true; // can have another sign after 'e'
 
 				continue;
 			}
 
-			if (c >= '0' && c <= '9') {		// FINALLY '0' -> '9'
-				hasNum = true;				// this should be true once there is a num
-											// ending with a digit is ALWAYS true !!!!!!
-				if (!canE && !hasE) {		
-					canE = true;			// can have 'e' only after digit
+			if (c >= '0' && c <= '9') { // FINALLY '0' -> '9'
+				hasNum = true; // this should be true once there is a num
+								// ending with a digit is ALWAYS true !!!!!!
+				if (!canE && !hasE) {
+					canE = true; // can have 'e' only after digit
 				}
-				canSign = false;			// can't have a sign after a digit
-				
-			} else {		// other than '0' -> '9', 'e', '.', '+', '-'
-				return false;
+				canSign = false; // can't have a sign after a digit
+
+			} else { // other than '0' -> '9', 'e', '.', '+', '-'
+				return false; // maybe it is ' ' (space) or any stuff...
 			}
 		}
-
 		return hasNum;
 	}
 
@@ -100,8 +92,9 @@ public class ValidNumber {
 		System.out.println(isNumber("-2e2"));
 		System.out.println(isNumber(".5e2"));
 		System.out.println(isNumber("2e"));
-		System.out.println(isNumber("5.e2"));	// 5.0: power 2
-		System.out.println(isNumber("e1"));   // 'e' can't be the first
-		System.out.println(isNumber(".5e2.5"));		// it depends: sometimes can have 1e0.5
+		System.out.println(isNumber("5.e2")); // 5.0: power 2
+		System.out.println(isNumber("e1")); // 'e' can't be the first
+		System.out.println(isNumber(".5e2.5")); // it depends: sometimes can
+												// have 1e0.5
 	}
 }

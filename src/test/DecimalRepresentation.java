@@ -1,5 +1,10 @@
 package test;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 public class DecimalRepresentation {
 
 	// http://www.careercup.com/question?id=5764083194265600
@@ -15,5 +20,6 @@ public class DecimalRepresentation {
 
 	public static void main(String[] args) {
 //		System.out.println(decimalRepresentation(10, 3));
+		
 	}
 }

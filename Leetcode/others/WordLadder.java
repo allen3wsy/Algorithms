@@ -14,42 +14,36 @@ public class WordLadder {
 
 		wordQueue.add(start);
 		distanceQueue.add(1);
-
 		while (!wordQueue.isEmpty()) {
 			String currWord = wordQueue.poll();
-			Integer currDistance = distanceQueue.poll();
+			int currDistance = distanceQueue.poll();
 
-			if (currWord.equals(end)) {
-				return currDistance;
-			}
+			if (currWord.equals(end)) // if it is the last
+				return currDistance; // return result!!!
 
+			// there are 2 for loops here: O(26N)
 			for (int i = 0; i < currWord.length(); i++) {
 				char[] currCharArray = currWord.toCharArray();
-
-				for (char c = 'a'; c <= 'z'; c++) { // this for loop is extremly
-													// important !!!
+				for (char c = 'a'; c <= 'z'; c++) { // this loop is important
 					currCharArray[i] = c;
-
 					String newWord = new String(currCharArray);
 					if (dict.contains(newWord)) {
 						wordQueue.add(newWord);
 						distanceQueue.add(currDistance + 1);
-						dict.remove(newWord); // don't forget to remove this
-												// !!!!!
+						dict.remove(newWord); // don't forget to remove this!
 					}
 				}
 			}
 		}
-		return 0; // if wordQueue is empty and still didn't return the result,
-					// then 0 means NOT FOUND
+		return 0; // if we didn't return the result, then 0 means NOT FOUND
 	}
-	
+
 	public static void main(String[] args) {
 		Set<String> dict = new HashSet<String>();
-		dict.add("dag");	// should contained !!!
-//		dict.add("dog");   // start
-		dict.add("dig");   // end
-		
+		dict.add("dag"); // should contained !!!
+		// dict.add("dog"); // start
+		dict.add("dig"); // end
+
 		System.out.println(ladderLength("dog", "dig", dict));
 	}
 }

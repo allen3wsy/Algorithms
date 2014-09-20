@@ -12,25 +12,22 @@ public class Permutations {
         int n = num.length;  
         boolean[] visited = new boolean[n];  
           
-        permuteImp(result, tmp, num, visited);  
+        permuteHelper(result, tmp, num, visited);  
         return result;  
     } 
     
-    private void permuteImp(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> tmp, int[] num, boolean[] visited) {  
+    private void permuteHelper(ArrayList<ArrayList<Integer>> result, ArrayList<Integer> tmp, int[] num, boolean[] visited) {  
         if(tmp.size() == num.length)    {               // otherwise the length is incorrect
             result.add(new ArrayList<Integer>(tmp));    // copy a new one and add it into the result set
             return;  
         }  
-        
         // every time we recurse, we have to go through the loop,
         // For example: [1, 2, 3]:  look at the notes for the recursion tree and the for loop graph
         for(int i = 0; i < num.length; i++) {  
             if(!visited[i]) {                               // if num[i] has not been visited !
                 tmp.add(num[i]);  
                 visited[i] = true;  
-                
-                permuteImp(result, tmp, num, visited);      // recursive solve: DFS
-                
+                permuteHelper(result, tmp, num, visited);      // recursive solve: DFS
                 visited[i] = false;  
                 tmp.remove(tmp.size() - 1);                 // remove the last one in the temp arrayList
             }  

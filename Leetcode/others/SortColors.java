@@ -3,11 +3,9 @@ package others;
 public class SortColors {
 
 	// KEY POINTS:
-	
 	public void sortColors(int[] A) {
 		int red = 0;
 		int blue = A.length - 1;
-
 		int i = 0;
 
 		// i should not be larger than blue

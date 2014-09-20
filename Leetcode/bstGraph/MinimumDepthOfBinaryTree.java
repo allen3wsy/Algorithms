@@ -5,6 +5,25 @@ import java.util.Queue;
 
 public class MinimumDepthOfBinaryTree {
 
+	// DFS (recursion) solution
+	// Allen && Leon
+    public int minDepth2(TreeNode root) {
+        if(root == null)
+            return 0;
+
+        int left = minDepth(root.left);
+        int right = minDepth(root.right);
+        
+        if(root.left == null) {
+            return right + 1;
+        } else if(root.right == null) {     // root.left != null;  root.right == null
+            return left + 1;
+        } else {        // left != null && right != null
+            return Math.min(left, right) + 1;
+        }
+        
+    }
+    
 	// BFS solution
 	public int minDepth(TreeNode root) {
 		if (root == null)
@@ -40,22 +59,4 @@ public class MinimumDepthOfBinaryTree {
 					// add the return statement
 	}
 	
-	// DFS (recursion) solution
-	// Allen && Leon
-    public int minDepth2(TreeNode root) {
-        if(root == null)
-            return 0;
-
-        int left = minDepth(root.left);
-        int right = minDepth(root.right);
-        
-        if(root.left == null) {
-            return right + 1;
-        } else if(root.right == null) {     // root.left != null;  root.right == null
-            return left + 1;
-        } else {        // left != null && right != null
-            return Math.min(left, right) + 1;
-        }
-        
-    }
 }

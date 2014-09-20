@@ -22,14 +22,11 @@ public class PartitionList {
 		ListNode fakeHead1 = new ListNode(0); // fakeHead1 is for first part
 		ListNode fakeHead2 = new ListNode(0); // this fakeHead2 is for the part
 												// bigger than or equal to x
-
 		fakeHead1.next = head;
 		ListNode p = head; // need 2 pointer for the list (smaller than x)
-		ListNode prev = fakeHead1; //
+		ListNode prev = fakeHead1;
 
-		ListNode p2 = fakeHead2; // p2 is the running pointer for the second
-									// list part
-
+		ListNode p2 = fakeHead2; // p2 is the running pointer for second list
 		while (p != null) {
 			if (p.val < x) {
 				p = p.next;
@@ -45,9 +42,12 @@ public class PartitionList {
 			}
 		}
 
-		prev.next = fakeHead2.next; // now p is null and prev is the rightmost
-									// node of the first part
-
+		// now p is null and prev is the rightmost node of the first part
+		prev.next = fakeHead2.next;
 		return fakeHead1.next;
+	}
+
+	public static void main(String[] args) {
+
 	}
 }

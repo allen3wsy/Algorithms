@@ -20,6 +20,5 @@ public class SymmetricTree {
 		/* first check the data, then recurse down */
 		return ((t1.val == t2.val) && mirror(t1.left, t2.right) && mirror(
 				t1.right, t2.left));
-
 	}
 }
