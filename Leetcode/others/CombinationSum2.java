@@ -23,7 +23,9 @@ public class CombinationSum2 {
 			int target, ArrayList<Integer> result, int step, int sum) {
 		if (sum == target) { // sum == target
 			if (!results.contains(result)) {
-				results.add(new ArrayList<Integer>(result)); 
+				// this is not the best way to do it. use a while loop to skip
+				// it would be better
+				results.add(new ArrayList<Integer>(result));
 				// look at my notes!!! NEED to check whether
 			} // results.contains(result)
 			return;
@@ -35,7 +37,6 @@ public class CombinationSum2 {
 
 		// goes to here, means: sum < target, traverse down
 		for (int i = step; i < candidates.length; i++) {
-
 			result.add(candidates[i]); // add one to result
 			dfs(results, candidates, target, result, i + 1, sum + candidates[i]);
 			// Note: here pass i + 1 to next level, then i + 1 is the step

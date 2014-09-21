@@ -35,7 +35,7 @@ public class Permutations2 {
                 System.out.println(temp);
                 // skip the duplicates:  AFTER REMOVE !!! so that 
                 // these 2 lines are for removing duplicates !!!
-                while(i + 1 < num.length && num[i + 1] == num[i])  { // diff: this one should be different from Permutation I
+                while(i < num.length - 1 && num[i + 1] == num[i])  { // diff: this one should be different from Permutation I
                     i++;   // diff: this one should be different from Permutation I
                 }
             }

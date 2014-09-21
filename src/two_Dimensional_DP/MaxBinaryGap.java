@@ -15,8 +15,8 @@ public class MaxBinaryGap {
 			r = N & 1; // get right most bit
 			N = N >> 1; // shift N 1 bit to right side
 
-			if (0 == r && startFlag) // only when startFlag is true, we can
-										// start counting
+			// only when startFlag is true, we can start counting
+			if (0 == r && startFlag)
 				count++;
 
 			if (1 == r) { // if no 1 is met, we will not do this...
@@ -25,7 +25,6 @@ public class MaxBinaryGap {
 				count = 0;
 			}
 		}
-
 		return max;
 	}
 

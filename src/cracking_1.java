@@ -64,7 +64,6 @@ public class cracking_1 {
 			//first++;
 			//last--;
 		}
-				
 	}
 	
 	
@@ -113,12 +112,10 @@ public class cracking_1 {
 	}
 	
 	
-	
 	/**
 	 * 1.5
 	 * @param args
 	 */
-	
 	// Allen's version
 	public static String compressStr(String s){
 	
@@ -259,7 +256,6 @@ public class cracking_1 {
 		String[] test = new String[1000];
 		Scanner in = new Scanner(System.in);
 		int[] a = {1,2,3,4,5};
-		
 //
 //		System.out.println("please input the string:");
 //		String sss = in.next();

@@ -1,5 +1,9 @@
 package basic_data_structure;
 
+import java.util.LinkedHashSet;
+
+import jdk.nashorn.internal.ir.Flags;
+
 // This node is for a singly linked list 
 public class Node {
 
@@ -135,7 +139,6 @@ public class Node {
         	System.out.println("haha");
         if(arr[2].equals("a"))	
         	System.out.println("hey");
-        
         
 	}
 }
