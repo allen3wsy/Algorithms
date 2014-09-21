@@ -1,96 +1,104 @@
-import com.sun.xml.internal.messaging.saaj.packaging.mime.Header;
-
+/**
+ * In case of ListNode Recursion !!!
+ * 
+ * @author AllenNg
+ */
 public class LinkedListRecursion {
-	
+
+	public static class ListNode {
+		ListNode next;
+		int val;
+
+		public ListNode(int n) {
+			val = n;
+		}
+	}
+
 	public class IntWrapper {
 		public int value = 0;
 	}
-	
-	public static LinkedListNode nthToLast(LinkedListNode head, int k, IntWrapper i)	{
-		if(head == null)
+
+	public static ListNode nthToLast(ListNode head, int k, IntWrapper intWrapper) {
+		if (head == null)
 			return null;
-		
-		LinkedListNode node = nthToLast(head.next, k, i);	// main recursion
-															// node (2 possibilities:)
-		i.value = i.value + 1;								// 1: always null
-		if(i.value == k)	{								// 2: once found, will always return that up...
+
+		// main recursion node (2 possibilities:)
+		ListNode node = nthToLast(head.next, k, intWrapper);
+		intWrapper.value = intWrapper.value + 1; // 1: always null
+		if (intWrapper.value == k) // 2: once found, always return it up
 			return head;
-		}
-		
+
 		return node;
 	}
-	
-		
-	public class Result {
-		public LinkedListNode node;
+
+	public static class Result {
+		public ListNode node;
 		public boolean result;
-		public Result(LinkedListNode n, boolean res) {
+
+		public Result(ListNode n, boolean res) {
 			node = n;
 			result = res;
 		}
 	}
 
-	public LinkedListRecursion.Result isPalindromeRecurse(LinkedListNode head, int length) {
+	public static LinkedListRecursion.Result isPalindromeRecurse(ListNode head,
+			int length) {
 		if (head == null || length == 0) {
 			return new LinkedListRecursion.Result(null, true);
 		} else if (length == 1) {
 			return new LinkedListRecursion.Result(head.next, true);
 		} else if (length == 2) {
-			return new LinkedListRecursion.Result(head.next.next, head.data == head.next.data);
+			return new LinkedListRecursion.Result(head.next.next,
+					head.val == head.next.val);
 		}
-		
-		LinkedListRecursion.Result res = isPalindromeRecurse(head.next, length - 2);	// recursion here !!!
-		
+
+		LinkedListRecursion.Result res = isPalindromeRecurse(head.next,
+				length - 2); // recursion here !!!
+
 		if (!res.result || res.node == null) {
-			return res; // Only "result" member is actually used in the call stack.
+			return res; // Only "result" member is actually used in the call
+						// stack.
 		} else {
-			res.result = head.data == res.node.data;
+			res.result = head.val == res.node.val;
 			res.node = res.node.next;
 			return res;
 		}
 	}
-	
-	public boolean isPalindrome(LinkedListNode head) {
+
+	public static boolean isPalindrome(ListNode head) {
 		int size = 0;
-		LinkedListNode n = head;
-		while (n != null) {			// getting the size of the Linked List and pass the size as the "param" 
-			size++;					// into PalindromeRecurse(head, size) function
+		ListNode n = head;
+		while (n != null) { // getting the size of the Linked List and pass the
+							// size as the "param"
+			size++; // into PalindromeRecurse(head, size) function
 			n = n.next;
 		}
-		Result p = isPalindromeRecurse(head, size);			
+		Result p = isPalindromeRecurse(head, size);
 		return p.result;
 	}
-	
+
 	public static void main(String[] args) {
 		int length = 10;
-		LinkedListNode[] nodes = new LinkedListNode[length];
+		ListNode[] nodes = new ListNode[length];
 		for (int i = 0; i < length; i++) {
-			nodes[i] = new LinkedListNode(i >= length / 2 ? length - i - 1 : i);
+			if (i >= length / 2) {
+				nodes[i] = new ListNode(length - i - 1);
+			} else { // i < length / 2
+				nodes[i] = new ListNode(i);
+			}
 		}
-		
-//		for (int i = 0; i < length; i++) {
-//			if (i < length - 1) {
-//				nodes[i].setNext(nodes[i + 1]);
-//			}
-//			if (i > 0) {
-//				nodes[i].setPrevious(nodes[i - 1]);
-//			}
-//		}
+
+		// for (int i = 0; i < length; i++) {
+		// if (i < length - 1) {
+		// nodes[i].setNext(nodes[i + 1]);
+		// }
+		// if (i > 0) {
+		// nodes[i].setPrevious(nodes[i - 1]);
+		// }
+		// }
 		// nodes[length - 2].data = 9; // Uncomment to ruin palindrome
-		
-		LinkedListNode head = nodes[0];
-//		System.out.println(head.printForward());
-		LinkedListRecursion q = new LinkedListRecursion();
-		System.out.println(q.isPalindrome(head));
-	}
 
-}
-
-
-class LinkedListNode{
-	LinkedListNode next;
-	int data;
-	public LinkedListNode(int n) {
-		data = n;
+		ListNode head = nodes[0];
+		System.out.println(isPalindrome(head));
 	}
 }
