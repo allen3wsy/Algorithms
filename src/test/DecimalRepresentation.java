@@ -3,6 +3,7 @@ package test;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
+import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -20,20 +21,21 @@ public class DecimalRepresentation {
 	}
 
 	public static void main(String[] args) {
-//		System.out.println(decimalRepresentation(10, 3));
-		
-        LinkedHashSet<String> hs = new LinkedHashSet();
-        hs.add("A");
-        hs.add("D");
-        hs.add("F");
-        
-        boolean printFlag = false;
-        for (String str : hs) {
-        	if(str.equals("D"))
-        		printFlag = true;
-        	if(printFlag) 
-        		System.out.println(str);
+		// System.out.println(decimalRepresentation(10, 3));
+
+		LinkedHashMap<Integer, Integer> linkedHashMap = new LinkedHashMap<Integer, Integer>();
+		linkedHashMap.put(100, 3);
+		linkedHashMap.put(1000, 4);
+		linkedHashMap.put(20, 1);
+
+		boolean printFlag = false;
+
+		for (Map.Entry<Integer, Integer> entry : linkedHashMap.entrySet()) {
+			if (entry.getKey() == 1000)
+				printFlag = true;
+			if (printFlag)
+				System.out.println(entry);
 		}
-		System.out.println(hs);
+		System.out.println(linkedHashMap);
 	}
 }

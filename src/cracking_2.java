@@ -20,7 +20,7 @@ public class cracking_2 {
 		int[] a2 = { 5, 9, 2 };
 		Node n1 = newLinkedList(a1);
 		Node n2 = newLinkedList(a2);
-		printList(addLists(n1, n2)); // 717 + 295 = 1012 (reverse Order)
+		printList(addTwoNumbers(n1, n2)); // 717 + 295 = 1012 (reverse Order)
 
 		// 2.7
 		int[] palin = { 1, 1, 2, 3, 5, 5, 3, 2, 1, 1, 100 };
@@ -54,7 +54,6 @@ public class cracking_2 {
 	// with a hashMap O(N):
 	// We used a prev and a head: In this way, I would be less easier to
 	// make mistake
-
 	public static void removeDup1(Node head) {
 		if (head == null || head.next == null)
 			return;
@@ -91,8 +90,7 @@ public class cracking_2 {
 	}
 
 	/**
-	 * 2.2 
-	 * case: when k is bigger than the size of the list (3 > 2) return
+	 * 2.2 case: when k is bigger than the size of the list (3 > 2) return
 	 */
 	public static Node nthToLast(Node head, int k) {
 		if (k <= 0)
@@ -118,7 +116,6 @@ public class cracking_2 {
 	/**
 	 * 2.3
 	 */
-
 	// note: when n == null || n.next == null
 	// this algorithm fails
 	public static boolean deleteNode(Node n) {
@@ -132,20 +129,22 @@ public class cracking_2 {
 	/**
 	 * 2.4
 	 */
-	public static Node partition(Node node, int x) {
+	// note that Leetcode is better on this because the Leetcode problem
+	// preserves the order of the original list
+	public static Node partition(Node head, int x) {
 		Node before = null;
 		Node after = null;
 
-		while (node != null) {
-			Node temp = node.next;
-			if (node.val < x) {
-				node.next = before;
-				before = node;
+		while (head != null) {
+			Node temp = head.next;
+			if (head.val < x) {
+				head.next = before;
+				before = head;
 			} else {
-				node.next = after;
-				after = node;
+				head.next = after;
+				after = head;
 			}
-			node = temp;
+			head = temp;
 		}
 		// merge them back
 		if (before == null)
@@ -162,42 +161,36 @@ public class cracking_2 {
 	/**
 	 * 2.5
 	 */
-	public static Node addLists(Node n1, Node n2) {
+	public static Node addTwoNumbers(Node n1, Node n2) {
 		if (n1 == null && n2 == null)
 			return null;
 		int carry = 0;
-		int i1 = 0, i2 = 0;
 		Node result = null;
 		Node runner = null;
 
-		while (n1 != null || n2 != null) {
-			i1 = i2 = 0; // reset i1 and i2
+		// if any of the condition meets, we go on
+		while (n1 != null || n2 != null || carry > 0) {
+			int num1 = 0;
 			if (n1 != null) {
-				i1 = n1.val;
+				num1 = n1.val;
 				n1 = n1.next;
 			}
+			int num2 = 0;
 			if (n2 != null) {
-				i2 = n2.val;
+				num2 = n2.val;
 				n2 = n2.next;
 			}
-			int sum = i1 + i2 + carry; // set the sum
-			carry = 0; // reset the carry
-			if (sum >= 10)
-				carry = 1;
+			// EX: first digit then carry, otherwise will cause mistake...
+			int digit = (num1 + num2 + carry) % 10; // 1: set the digit
+			carry = (num1 + num2 + carry) / 10; // 2: then reset the carry
 
-			if (runner == null) {
-				// first
-				runner = new Node(sum % 10);
-				result = runner;
-			} else {
-				// second and later
-				runner.next = new Node(sum % 10);
+			if (runner == null) { // 1: only for the 1st time!!!
+				runner = new Node(digit);
+				result = runner; // only for the 1st time
+			} else { // 2-n: from 2nd to nth time
+				runner.next = new Node(digit);
 				runner = runner.next; // I forgot this one!!! *****
 			}
-		}
-
-		if (carry > 0) {
-			runner.next = new Node(carry);
 		}
 		return result;
 	}

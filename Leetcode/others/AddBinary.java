@@ -14,20 +14,18 @@ public class AddBinary {
 		int lastB = b.length() - 1;
 		int carry = 0;
 
+		// if any of the condition meets, we go on
 		while (lastA >= 0 || lastB >= 0 || carry > 0) {
-
-			int num1;
-			if (lastA >= 0)
-				num1 = a.charAt(lastA--) - '0'; // char - char == int:
-			else
-				num1 = 0;
-
-			int num2;
-			if (lastB >= 0)
-				num2 = b.charAt(lastB--) - '0'; // char - char == int
-			else
-				num2 = 0;
-
+			int num1 = 0;
+			if (lastA >= 0) {
+				num1 = a.charAt(lastA) - '0'; // char - char == int:
+				lastA--;
+			}
+			int num2 = 0;
+			if (lastB >= 0) {
+				num2 = b.charAt(lastB) - '0'; // char - char == int
+				lastB--;
+			}
 			// EX: first digit then carry, otherwise will cause mistake...
 			int digit = (num1 + num2 + carry) % 2;
 			carry = (num1 + num2 + carry) / 2;

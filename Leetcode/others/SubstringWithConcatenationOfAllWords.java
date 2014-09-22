@@ -65,7 +65,6 @@ public class SubstringWithConcatenationOfAllWords {
 		// String S = "barfoothefoobarmanfoobar";
 		String[] L = { "foo", "bar" };
 		
-		
 		// print out the result
 		ArrayList<Integer> arrayList = findSubstring(S, L);
 		System.out.println(arrayList);

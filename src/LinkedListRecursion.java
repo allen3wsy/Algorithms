@@ -77,6 +77,16 @@ public class LinkedListRecursion {
 		return p.result;
 	}
 
+	/**
+	 * 2.5
+	 * 
+	 * @author AllenNg
+	 */
+	public class PartialSum {
+		public ListNode sum = null;
+		public int carry = 0;
+	}
+	
 	public static void main(String[] args) {
 		int length = 10;
 		ListNode[] nodes = new ListNode[length];
