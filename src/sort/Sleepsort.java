@@ -1,4 +1,4 @@
-package test;
+package sort;
 
 import java.util.concurrent.CountDownLatch;
 
