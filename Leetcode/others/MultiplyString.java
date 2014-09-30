@@ -34,8 +34,8 @@ public class MultiplyString {
 		System.out.println(multiply("12", "12"));
 		System.out.println(Math.sqrt(2.59));
 
-		byte[] array = {1,2,3,4,4};
+		byte[] array = { 1, 2, 3, 4, 4 };
 		System.out.println(array[0]);
-		
+
 	}
 }

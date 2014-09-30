@@ -25,4 +25,7 @@ public class Sqrt_X {
 		}
 		return (int) high; // right now: high < low, should always return high
 	}
+	public static void main(String[] args) {
+//		BinarySearch.main(args);
+	}
 }

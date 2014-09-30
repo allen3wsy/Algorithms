@@ -14,7 +14,6 @@ public class MergeIntervals {
 			start = 0;
 			end = 0;
 		}
-
 		Interval(int s, int e) {
 			start = s;
 			end = e;
@@ -49,7 +48,6 @@ public class MergeIntervals {
 		        prev =  new Interval(prev.start, Math.max(prev.end, curr.end));
 		    }
 		}
- 
 		result.add(prev);
 		return result;
 	}

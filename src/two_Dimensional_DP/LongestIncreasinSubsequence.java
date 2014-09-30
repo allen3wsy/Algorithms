@@ -8,7 +8,7 @@ import java.util.ArrayList;
 // Brute force algo is O(2^N)
 // THIS algo is O(N^2)： O(N^2) space as well
 // can be improved to O(N log N) : using binary search for each List !!!
-public class LongestIncreasinSubstring {
+public class LongestIncreasinSubsequence {
 
 	public static ArrayList<ArrayList<Integer>> LIS(int[] arr) {
 		// all the lists (we just need the longest one)
