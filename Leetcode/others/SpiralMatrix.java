@@ -17,8 +17,8 @@ public class SpiralMatrix {
 		int x = 0;
 		int y = 0; // x and y are for the CURRENT coordinate of the traversal
 
-		while (m > 0 && n > 0) { // should be both > 0, otherwise should be
-									// continue
+		// should be both > 0, otherwise should be continue
+		while (m > 0 && n > 0) {
 
 			// if one row/column left, no circle can be formed
 			if (m == 1) {
@@ -32,29 +32,23 @@ public class SpiralMatrix {
 				}
 				break;
 			}
-
 			// BELOW, process a circle !! more than 1 row or 1 column !!!
 			// top - move right
-			for (int i = 1; i <= n - 1; i++) { // this line, we traverse n - 1
-												// elements, NOT the corner !
+			for (int i = 1; i <= n - 1; i++) { // NOT the corner !
 				result.add(matrix[x][y++]);
 			}
-
 			// right - move down
 			for (int i = 1; i <= m - 1; i++) {
 				result.add(matrix[x++][y]);
 			}
-
 			// bottom - move left
 			for (int i = 1; i <= n - 1; i++) {
 				result.add(matrix[x][y--]);
 			}
-
 			// left - move up
 			for (int i = 1; i <= m - 1; i++) {
 				result.add(matrix[x--][y]);
 			}
-
 			x++;
 			y++;
 			m = m - 2;

@@ -1,7 +1,7 @@
 package bstGraph;
 
-import linkedList.LinkedListCycle.ListNode;
-
+// construct the tree bottom-up (not top-down)
+// different from ConvertSortedArrayToBinarySearchTree (which is top-down)
 public class ConvertSortedListToBinarySearchTree {
 
 	public class ListNode {
@@ -21,7 +21,6 @@ public class ConvertSortedListToBinarySearchTree {
 			length++;
 			r = r.next;
 		}
-
 		ListNode[] lists = { head };
 		return sortedBST(lists, 0, length - 1);
 	}
@@ -32,7 +31,7 @@ public class ConvertSortedListToBinarySearchTree {
 		if (start > end)
 			return null;
 
-		int middle = (start + end) / 2;
+		int middle = start + (end - start) / 2;
 
 		TreeNode left = sortedBST(list, start, middle - 1);
 		TreeNode parent = new TreeNode(list[0].val);
@@ -41,9 +40,25 @@ public class ConvertSortedListToBinarySearchTree {
 		list[0] = list[0].next; // this is very important !!! changing the
 								// current node that should be inserted into the
 								// tree
-
 		parent.right = sortedBST(list, middle + 1, end);
-
 		return parent;
+	}
+	
+	
+	ListNode h; // outside 
+	// build tree bottom-up
+	public TreeNode sortedListToBST(int start, int end) {
+		if (start > end)
+			return null;
+		// mid
+		int mid = (start + end) / 2;
+ 
+		TreeNode root = new TreeNode(h.val);
+		root.left = sortedListToBST(start, mid - 1);
+		root.right = sortedListToBST(mid + 1, end);
+		
+		h = h.next;
+		
+		return root;
 	}
 }

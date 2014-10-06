@@ -16,10 +16,10 @@ public class BlockingQueueTest {
 	public synchronized void enqueue(int item) throws InterruptedException {
 		// here we also have to use while !!!
 		while (this.queue.size() == this.capacity) {
-			wait();
+			this.wait();
 		}
 		if (this.queue.size() == 0) {
-			notifyAll(); // note we have to notifyAll() here !!!
+			this.notifyAll(); // note we have to notifyAll() here !!!
 		}
 		this.queue.add(item); // can also put this before notifyAll()
 	}
@@ -28,11 +28,56 @@ public class BlockingQueueTest {
 	public synchronized int dequeue() throws InterruptedException {
 		// here we use
 		while (this.queue.size() == 0) {
-			wait();
+			System.out.println("Thread ID: " + Thread.currentThread().getId()
+					+ " is waiting");
+			this.wait();
+			System.out.println("Thread ID: " + Thread.currentThread().getId()
+					+ " was just notified");
 		}
 		if (this.queue.size() == this.capacity) {
-			notifyAll(); // note we have to notifyAll() here !!!
+			this.notifyAll(); // note we have to notifyAll() here !!!
 		}
+		System.out.println("dequeuing successfully! "
+				+ Thread.currentThread().getId() + "  size left:"
+				+ (queue.size() - 1));
 		return this.queue.poll(); // can also put this before notifyAll()
+	}
+
+	public static void main(String[] args) {
+		BlockingQueueTest blockingQueue = new BlockingQueueTest(3);
+		
+		Runnable enqueueTask = new Runnable() {
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						blockingQueue.enqueue(1);
+						Thread.sleep(100);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		
+		Runnable dequeueTask = new Runnable() {
+			@Override
+			public void run() {
+				while (true) {
+					try {
+						blockingQueue.dequeue();
+						Thread.sleep(1000);
+						System.out.println("Thread ID: "
+								+ Thread.currentThread().getId()
+								+ " SLEEP !!!! ");
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		};
+		// start the 2 threads
+		new Thread(enqueueTask).start();
+		new Thread(dequeueTask).start();
 	}
 }

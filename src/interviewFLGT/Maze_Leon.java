@@ -34,9 +34,7 @@ public class Maze_Leon {
 
 			// BFS
 			for (TargetAgent agent : agents) {
-
 				if (agent.hasNext()) {
-
 					ArrayList<Point> neibors = agent.next();
 
 					for (Point neibor : neibors) {

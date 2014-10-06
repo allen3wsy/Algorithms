@@ -74,7 +74,7 @@ public class Quicksort {
 		array[i] = array[j];
 		array[j] = tmp;
 	}
-	
+
 	public static void main(String[] args) {
 		int[] array = { 3, 4, 7, 7, 1, 9, 2, 10, 8, 5, 6 };
 
@@ -84,6 +84,5 @@ public class Quicksort {
 		for (int i = 0; i < array.length; i++) {
 			System.out.print(array[i] + " ");
 		}
-
 	}
 }

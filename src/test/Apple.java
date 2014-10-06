@@ -37,5 +37,6 @@ public class Apple {
 		System.out.println("a1 and a2 are equal?: " + a1.equals(a2));
 		// this will still be false because we didn't override hashCode() method
 		System.out.println(m.get(new Apple("green")));
+		
 	}
 }
