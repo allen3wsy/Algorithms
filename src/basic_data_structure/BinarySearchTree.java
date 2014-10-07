@@ -4,9 +4,24 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 /**
- * not yet !!!
+ * Really important !!!  (int result = t.compareTo(node.data))
  * 
+ * 	// contains
+	public boolean contains(T t, BinaryNode<T> node) {
+		if (node == null)
+			return false;
+
+		int result = t.compareTo(node.data);
+		if (result > 0)
+			return contains(t, node.right);
+		else if (result < 0)
+			return contains(t, node.left);
+		else { // result == 0: which means equal !!!
+			return true;
+		}
+	}
  */
+// Can also do: <T extends Comparable<? super T>>
 public class BinarySearchTree<T extends Comparable<? super T>> {
 
 	// create a null BST
@@ -63,13 +78,15 @@ public class BinarySearchTree<T extends Comparable<? super T>> {
 	public boolean contains(T t, BinaryNode<T> node) {
 		if (node == null)
 			return false;
+
 		int result = t.compareTo(node.data);
 		if (result > 0)
 			return contains(t, node.right);
 		else if (result < 0)
 			return contains(t, node.left);
-		else
+		else { // result == 0: which means equal !!!
 			return true;
+		}
 	}
 
 	// find the min value of the tree !!!!!!!!!! only one function

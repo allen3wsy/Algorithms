@@ -1,8 +1,8 @@
 package others;
 
-public class IntegeToRoman {
+public class IntegerToRoman {
 
-	public String intToRoman(int num) {
+	public static String intToRoman(int num) {
 
 		StringBuilder sb = new StringBuilder();
 		String symbol[] = { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X",
@@ -16,6 +16,10 @@ public class IntegeToRoman {
 			}
 		}
 		return sb.toString();
-
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(intToRoman(5000));
+		System.out.println(intToRoman(3999));
 	}
 }

@@ -53,8 +53,9 @@ public class OneHundredGame {
 				return true;
 			// 2. if p2 can find a way to make p1 loose, she will choose it
 			// Therefore in order for p1 to win, such way must not exist.
-			if (!isCurrentPlayerP1 && !p1CanWin)
+			else if (!isCurrentPlayerP1 && !p1CanWin) 
 				return false;
+			// two more possibilities
 
 		}
 		// player at this round has tried all possible moves:
