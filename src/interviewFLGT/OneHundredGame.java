@@ -1,6 +1,8 @@
 package interviewFLGT;
 
-public class OneHundredGame {
+import java.io.Serializable;
+
+public class OneHundredGame implements Serializable{
 
 	public static boolean canIWin(int maxChoosableInteger, int desiredTotal) {
 

@@ -27,63 +27,44 @@ public class MaxPointsOnALine {
 		int max = 1;
 
 		for (int i = 0; i < points.length; i++) {
+			// shared point changed, map should be cleared to server new points
+			map.clear();
+			// maybe all points are same points, the slope is Integer.MIN_VALUE
+			map.put(Double.MIN_VALUE, 1);
 
-			map.clear(); // shared point changed, map should be cleared and
-							// server the new point
-
-			// maybe all points contained in the list are same points,and same
-			// points' k is
-			// represented by Integer.MIN_VALUE
-			map.put((double) Integer.MIN_VALUE, 1);
-
-			int dup = 0;
-
+			int duplicates = 0;
 			for (int j = i + 1; j < points.length; j++) {
-
-				if (points[j].x == points[i].x && points[j].y == points[i].y) { // same
-																				// point
-					dup++;
-					continue; // if we calculate k, it can be 0 or
-								// Integer.MAX_VALUE(ambiguous...)
-				}
-
-				// look
-				// 0.0+(double)(points[j].y-points[i].y)/(double)(points[j].x-points[i].x)
-				// because (double)0/-1 is -0.0, so we should use 0.0+-0.0=0.0
-				// to solve 0.0 !=-0.0
-				// problem
-
-				// if the line through two points are parallel to y coordinator,
-				// then K(slop) is
-				// Integer.MAX_VALUE
-				double key;
-				if (points[j].x - points[i].x == 0) {
-					key = Integer.MAX_VALUE;
-				} else {
-					key = 0.0 + (double) (points[j].y - points[i].y)
+				double slope;
+				if (points[j].x == points[i].x && points[j].y == points[i].y) {
+					duplicates++; // same point
+					continue;
+				} else if (points[j].x - points[i].x == 0) {
+					slope = Double.MAX_VALUE; // parallel to y coordinator!
+				} else { // 0.0 == -0.0 ! But their hashCodes() are different !
+					slope = 0.0 + (double) (points[j].y - points[i].y)
 							/ (double) (points[j].x - points[i].x);
 				}
 
-				if (map.containsKey(key)) { // note: this is within the outer
-											// loop
-					map.put(key, map.get(key) + 1); // meaning: for the same i:
-													// how many dup points...
+				if (map.containsKey(slope)) { // same line
+					map.put(slope, map.get(slope) + 1);
 				} else {
-					map.put(key, 2);
+					map.put(slope, 2);
 				}
 			}
 
 			for (int temp : map.values()) {
-				// duplicate may exist
-				if (temp + dup > max) {
-					max = temp + dup;
-				}
+				if (temp + duplicates > max) // duplicate may exist
+					max = temp + duplicates;
 			}
 		}
 		return max;
 	}
-	
+
 	public static void main(String[] args) {
-		
+		Double d1 = 0.0;
+		Double d2 = -0.0;
+		System.out.println(d1.hashCode() + " " + d2.hashCode());
+		System.out.println(0.0 / 3);
+		System.out.println((double) (-3 + 3) / 10);
 	}
 }

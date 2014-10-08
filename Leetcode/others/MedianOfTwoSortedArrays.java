@@ -46,4 +46,8 @@ public class MedianOfTwoSortedArrays {
             return A[n / 2];    
         return (A[n / 2 - 1] + A[n / 2]) / 2.0;
     }
+    
+    public static void main(String[] args) {
+		
+	}
 }
