@@ -7,30 +7,19 @@ import java.util.Queue;
 public class BinaryTreeLevelOrderTraversal {
 
 	public ArrayList<ArrayList<Integer>> levelOrder(TreeNode root) {
-
-		ArrayList<ArrayList<Integer>> list = new ArrayList<ArrayList<Integer>>();
+		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
 		if (root == null)
-			return list;
+			return result;
 
 		Queue<TreeNode> queue = new LinkedList<TreeNode>();
 		queue.add(root);
-
 		while (!queue.isEmpty()) {
-			// hard copy !!! Using this queue to make integer list !
-			Queue<TreeNode> tempQueue = new LinkedList<TreeNode>(queue);
 			ArrayList<Integer> valueList = new ArrayList<Integer>();
 
-			// getting the integer value out of the queue (Mostly copying
-			// integer values !!!)
-			while (!tempQueue.isEmpty()) {
-				TreeNode node = tempQueue.poll();
-				valueList.add(node.val);
-			}
-			list.add(valueList);
-
-			int size = queue.size();
+			int size = queue.size(); // size of current queue
 			for (int i = 0; i < size; i++) {
 				TreeNode node = queue.poll();
+				valueList.add(node.val); // add the node to current level
 				if (node.left != null) {
 					queue.add(node.left);
 				}
@@ -38,7 +27,8 @@ public class BinaryTreeLevelOrderTraversal {
 					queue.add(node.right);
 				}
 			}
+			result.add(valueList); // add this new level
 		}
-		return list;
+		return result;
 	}
 }

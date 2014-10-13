@@ -8,10 +8,8 @@ package binarySearch;
  */
 
 public class SearchInRotatedSortedArray2 {
-
 	/**
-	 * good solution !!
-	 * worst case is : O(N)
+	 * good solution !! worst case is : O(N)
 	 */
 	// http://blog.csdn.net/linhuanmars/article/details/20588511
 	public static boolean search(int[] A, int target) {
@@ -24,26 +22,25 @@ public class SearchInRotatedSortedArray2 {
 			int m = (l + r) / 2;
 			if (A[m] == target)
 				return true;
-			
+
 			// from now on, A[m] != target
-			if (A[l] < A[m]) {	// left part is normally ordered
-				if (A[l] <= target && target < A[m])  // can also be target <= A[m]
+			if (A[l] < A[m]) { // left part is normally ordered
+				if (A[l] <= target && target < A[m]) // also be: target <= A[m]
 					r = m - 1;
 				else
 					l = m + 1;
 			} else if (A[l] > A[m]) { // right part is normally ordered
-				if (A[m] < target && target <= A[r]) // can also be A[m] <= target
+				if (A[m] < target && target <= A[r]) // also be A[m] <= target
 					l = m + 1;
 				else
 					r = m - 1;
-			} else {  // (A[l] == A[m]) != target
-				l++; // this part is different from the previous question 
+			} else { // (A[l] == A[m]) != target, move it, that's why it is O(N)
+				l++; // decrease the range by 1...
 			}
 		}
-		return false;  // when (l > r)
+		return false; // when (l > r)
 	}
 
-	
 	/**
 	 * Recursive solution !!!
 	 */
@@ -66,15 +63,13 @@ public class SearchInRotatedSortedArray2 {
 			return -1;
 
 		if (a[left] < a[mid]) { // left is normally ordered
-			if (x >= a[left] && x <= a[mid]) { // to see if it is within left
-												// side
+			if (x >= a[left] && x <= a[mid]) { // see if it's within left side
 				return binarySearchRotatedRecursive(a, left, mid - 1, x);
 			} else {
 				return binarySearchRotatedRecursive(a, mid + 1, right, x);
 			}
 		} else if (a[mid] < a[left]) { // right is normally ordered
-			if (x >= a[mid] && x <= a[right]) { // to see if it is within right
-												// side
+			if (x >= a[mid] && x <= a[right]) { // see if it's within right side
 				return binarySearchRotatedRecursive(a, mid + 1, right, x);
 			} else {
 				return binarySearchRotatedRecursive(a, left, mid - 1, x);
@@ -84,11 +79,9 @@ public class SearchInRotatedSortedArray2 {
 										// right half
 				return binarySearchRotatedRecursive(a, mid + 1, right, x);
 			} else { // ELSE: we have to search BOTH HALVES
-				int result = binarySearchRotatedRecursive(a, left, mid - 1, x); // search
-																				// left
+				int result = binarySearchRotatedRecursive(a, left, mid - 1, x); // left
 				if (result == -1) { // Must be on the right side
-					return binarySearchRotatedRecursive(a, mid + 1, right, x); // search
-																				// right
+					return binarySearchRotatedRecursive(a, mid + 1, right, x); // right
 				} else {
 					return result;
 				}
