@@ -2,7 +2,7 @@ package linkedList;
 
 public class ReverseNodesInK_Group {
 
-	public class ListNode {
+	public static class ListNode {
 		int val;
 		ListNode next;
 
@@ -13,58 +13,42 @@ public class ReverseNodesInK_Group {
 	}
 
 	// http://www.cnblogs.com/lichen782/p/leetcode_Reverse_Nodes_in_kGroup.html
-	public ListNode reverseKGroup(ListNode head, int k) {
-		if (head == null || k == 1)
+	// http://blog.csdn.net/linhuanmars/article/details/19957455
+	// Allen's modified version based on the 2 solutions above !!!
+	public static ListNode reverseKGroup(ListNode head, int k) {
+		if (head == null || k == 1) // move on when k >= 2
 			return head;
-
 		ListNode dummy = new ListNode(0);
 		dummy.next = head;
-		ListNode pre = dummy; // the pre pointer
 
-		int i = 0;
-		// move "head" forward, make it "changed"
-		while (head != null) {
-			i++;
-			if (i % k == 0) { // only under this condition that we should
-								// reverse
-				pre = reverse(pre, head.next); // head.next can be null
-												// (rightmost.next)
-				// return "last" to "pre" to make sure that it is not part of
-				// changing again
-				head = pre.next; // EX: Don't forget this, which makes head the
-									// next of "pre"
-									// (starting position) !!!
-			} else {
-				head = head.next;
+		ListNode pre = dummy;
+		ListNode cur = head;
+		int count = 0;
+		while (cur != null) {
+			cur = cur.next;
+			count++;
+			if (count % k == 0) {
+				pre = reverse(pre, cur);
 			}
 		}
-		return dummy.next; // which is the head of the whole list
+		return dummy.next;
 	}
 
-	/**
-	 * Reverse a link list between pre and next EXCLUSIVELY an example: a linked
-	 * list: 0->1->2->3->4->5->6 | | pre next after call pre = reverse(pre,
-	 * next)
-	 * 
-	 * 0->3->2->1->4->5->6 | | pre next
-	 * 
-	 * @param pre
-	 * @param next
-	 * @return the reversed list's last node, which is the precedence of
-	 *         parameter next
-	 */
-	public ListNode reverse(ListNode pre, ListNode next) {
-		ListNode last = pre.next;
-		ListNode cur = last.next;
+	// leftBound and rightBound are both not included in k-Nodes
+	private static ListNode reverse(ListNode leftBound, ListNode rightBound) {
 
-		// 4 steps here !!!
-		while (cur != next) {
-			last.next = cur.next; // update 3 pointers !!!
-			cur.next = pre.next;
-			pre.next = cur;
-
-			cur = last.next; // move the cur pointer forward
+		ListNode prev = leftBound.next;
+		ListNode cur = leftBound.next.next;
+		while (cur != rightBound) {
+			ListNode next = cur.next;
+			cur.next = prev;
+			prev = cur;
+			cur = next;
 		}
-		return last; // EX: return "last" pointer to "pre"
+		ListNode toReturn = leftBound.next; // toReturn is the left node next rounds
+		leftBound.next.next = rightBound;
+		leftBound.next = prev;
+		return toReturn;
 	}
+
 }

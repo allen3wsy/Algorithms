@@ -12,35 +12,36 @@ public class SwapNodesInPairs {
 		}
 	}
 
+	// http://blog.csdn.net/linhuanmars/article/details/19957455
+    // Allen's modified version based on the 2 solutions above !!!
 	public ListNode swapPairs(ListNode head) {
-		if (head == null || head.next == null)
+		if (head == null) // move on when k >= 2
 			return head;
+		ListNode dummy = new ListNode(0);
+		dummy.next = head;
 
-		// INIT: there are at least 2 nodes right now
-		ListNode i = head;
-		ListNode j = head.next;
-		head = j;
-
-		while (i != null && j != null) {
-			ListNode nextI = j.next;
-			j.next = i; // must be done
-
-			if (nextI == null) {
-				i.next = null; // first case
-				break;
-			} else {
-				ListNode nextJ = nextI.next;
-				if (nextJ == null) {
-					i.next = nextI; // second case
-					break;
-				} else {
-					i.next = nextJ; // third case
-					i = nextI;
-					j = nextJ;
-				}
+		ListNode pre = dummy;
+		ListNode cur = head;
+		int count = 0;
+		while (cur != null) {
+			cur = cur.next;
+			count++;
+			if (count % 2 == 0) {
+				pre = reverse(pre, cur);
 			}
 		}
+		return dummy.next;
+	}
 
-		return head;
+	// leftBound and rightBound are both not included in k-Nodes
+	private static ListNode reverse(ListNode leftBound, ListNode rightBound) {
+
+		ListNode prev = leftBound.next;
+		ListNode cur = leftBound.next.next;
+		cur.next = prev;
+		prev.next = rightBound;
+		leftBound.next = cur;
+
+		return prev;
 	}
 }
