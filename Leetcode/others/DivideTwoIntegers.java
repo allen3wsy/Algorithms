@@ -14,7 +14,6 @@ public class DivideTwoIntegers {
         boolean isNeg = false;
         if((dividend > 0) != (divisor > 0))
             isNeg = true;
-        
         int res = 0;
         
         /**
@@ -29,7 +28,6 @@ public class DivideTwoIntegers {
         /**
          * this snippet of code is not that necessary if we use long to cast dividend and divisor
          */
-        
         // if we didn't use the above snippet, then we MUST use LONG
         long l_dividend = dividend;
         long l_divisor = divisor;

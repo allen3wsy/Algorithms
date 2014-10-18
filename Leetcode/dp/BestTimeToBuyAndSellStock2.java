@@ -1,4 +1,4 @@
-package others;
+package dp;
 
 public class BestTimeToBuyAndSellStock2 {
 
@@ -10,6 +10,5 @@ public class BestTimeToBuyAndSellStock2 {
 				profit += (prices[i] - prices[i - 1]);
 		}
 		return profit;
-
 	}
 }
