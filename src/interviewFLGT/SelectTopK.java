@@ -2,6 +2,7 @@ package interviewFLGT;
 
 public class SelectTopK {
 
+	// K is from [0, num.length - 1]
 	public static int selectK(int[] num, int k) {
 		// error check
 		if (num == null || k >= num.length)
@@ -32,6 +33,10 @@ public class SelectTopK {
 
 	// partition around num[l], return pivot index
 	private static int partition(int[] num, int l, int r) {
+		
+		//int i = low, j = high;
+		//int pivot = arr[low + (high - low) / 2];
+		
 		int pivot = num[l];
 		int i = l + 1;
 		int j = r;
@@ -54,9 +59,9 @@ public class SelectTopK {
 	}
 
 	public static void main(String[] args) {
-		int[] A = { 3, 1, 5, 2, 4 };
+		int[] A = { 3, 1, 5, 2, 4, 100};
 		
 		System.out.println("the index of top K: ");
-		System.out.println(selectK(A, 3));
+		System.out.println(selectK(A, 0));
 	}
 }

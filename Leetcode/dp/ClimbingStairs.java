@@ -1,4 +1,4 @@
-package others;
+package dp;
 
 public class ClimbingStairs {
 

@@ -6,9 +6,9 @@ import java.util.List;
 
 public class LetterCombinationsOfAPhoneNumber {
 
-	public static List<String> letterCombinations(String input) {
+	public static ArrayList<String> letterCombinations(String input) {
 
-		List<String> result = new ArrayList<String>();
+		ArrayList<String> result = new ArrayList<String>();
 		StringBuilder current = new StringBuilder();
 
 		HashMap<Integer, String> letterMap = createMap();

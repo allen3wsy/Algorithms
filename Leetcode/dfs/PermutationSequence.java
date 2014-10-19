@@ -1,4 +1,4 @@
-package others;
+package dfs;
 
 public class PermutationSequence {
 

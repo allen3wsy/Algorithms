@@ -2,6 +2,7 @@ package sort;
 
 // can also look at program creek !!!
 // http://www.vogella.com/tutorials/JavaAlgorithmsQuicksort/article.html
+// Allen's version
 public class Quicksort {
 
 	// easier to remember !!!
