@@ -45,7 +45,6 @@ public class RecoverBinarySearchTree {
                 res.set(1, root);
             }
         }
-        
         pre.set(0, root);   // after processing itself, itself(root) should be the pre !!!
         
         // 4: process right

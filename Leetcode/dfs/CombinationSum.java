@@ -8,11 +8,9 @@ public class CombinationSum {
 	public ArrayList<ArrayList<Integer>> combinationSum(int[] candidates,
 			int target) {
 		ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
-		if (candidates.length == 0) {
+		if (candidates == null || candidates.length == 0)
 			return results;
-		}
-		Arrays.sort(candidates); // have to sort first, otherwise not working
-									// (not efficient)
+		Arrays.sort(candidates); // have to sort first, otherwise not efficient
 
 		ArrayList<Integer> result = new ArrayList<Integer>();
 		dfs(results, candidates, target, result, 0, 0);
@@ -24,10 +22,9 @@ public class CombinationSum {
 	private void dfs(ArrayList<ArrayList<Integer>> results, int[] candidates,
 			int target, ArrayList<Integer> result, int step, int sum) {
 		if (sum == target) { // sum == target
-			results.add(new ArrayList<Integer>(result)); // look at me notes!!!
-															// no need to check
-															// whether
-			return; // results.contains(result)
+			// look at me notes!!! no need to check if results.contains(result)
+			results.add(new ArrayList<Integer>(result));
+			return;
 		}
 		if (sum > target) { // sum > target (exceed)
 			return; // do nothing, return immediately

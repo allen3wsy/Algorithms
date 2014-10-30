@@ -28,14 +28,10 @@ public class RotateList {
 
 		last.next = head; // make it a circle !!!
 
-		// Should considered the situtation that n larger than given list's
-		// length
+		// consider the situation that n larger than given list's length
 		int k = len - n % len;
-		ListNode preHead = last; // preHead is the node which should point to
-									// null (end)
-
-		// find the point which are previuse for our target head
-		while (k > 0) {
+		ListNode preHead = last; // preHead: should point to null (end)
+		while (k > 0) { // find the point which are previous for our target head
 			preHead = preHead.next;
 			k--;
 		}

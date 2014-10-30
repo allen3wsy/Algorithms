@@ -1,11 +1,8 @@
 package linkedList;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
-import java.util.Queue;
 
 public class MergeKSortedLists {
 
@@ -39,8 +36,8 @@ public class MergeKSortedLists {
 				q.add(list);
 		}
 
-		ListNode head = new ListNode(0);
-		ListNode prev = head;
+		ListNode fakeHead = new ListNode(0);
+		ListNode prev = fakeHead;
 
 		// when the PriorityQueue has some nodes in it....
 		while (q.size() > 0) {
@@ -53,7 +50,7 @@ public class MergeKSortedLists {
 			prev = prev.next;
 		}
 
-		return head.next;
+		return fakeHead.next;
 	}
 	
 	public static void main(String[] args) {

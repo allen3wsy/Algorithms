@@ -8,7 +8,7 @@ public class DecodeWays {
 	public int numDecodings(String s) {
 		if (s.length() == 0 || s == null)
 			return 0;
-		int[] dp = new int[s.length() + 1]; // dp array must be of length (n + 1)
+		int[] dp = new int[s.length() + 1]; // DP array must be length (n + 1)
 
 		dp[0] = 1; // base case !!! dp[0] = 1
 		if (isValid(s.substring(0, 1))) {

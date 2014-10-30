@@ -64,8 +64,7 @@ public class TextJustification {
 				totoalLength += tmpStrArray[j].length();
 			}
 
-			// totoalLength = 13, L = 16, numOfString = 3, freeSpace = 16 - 13 =
-			// 3.
+			// totoalLength = 13, L=16, numOfString = 3, freeSpace = 16 - 13 = 3
 			// spaceCount = {2, 1, 0}
 			int[] spaceCount = getSpaceCount(L - totoalLength,
 					tmpStrArray.length);
@@ -98,10 +97,8 @@ public class TextJustification {
 			// Output:	[" "]
 			// Expected:	[""]
 			temp = temp.substring(0, L);
-			
 		}
 		result.set(result.size() - 1, temp);
-
 		return result;
 	}
 

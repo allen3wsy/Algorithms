@@ -17,7 +17,6 @@ public class CopyListWithRandomPointer {
 	public RandomListNode copyRandomList(RandomListNode head) {
 		if (head == null)
 			return head;
-		
 		return copy(head);
 	}
 

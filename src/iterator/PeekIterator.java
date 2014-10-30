@@ -8,7 +8,6 @@ import java.util.NoSuchElementException;
 // peek() and next() is very alike
 /**
  * @author AllenNg
- *
  */
 public class PeekIterator<E> implements Iterator<E> {
 	private Iterator<E> iter;

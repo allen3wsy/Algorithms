@@ -1,6 +1,5 @@
 package bstGraph;
 
-
 public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 
 	// http://www.programcreek.com/2013/01/construct-binary-tree-from-inorder-and-postorder-traversal/
@@ -20,12 +19,11 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 			int[] postorder, int postStart, int postEnd) {
 		if (inStart > inEnd || postStart > postEnd)
 			return null;
-		TreeNode root = new TreeNode(postorder[postEnd]);
 
-		int k = 0; // can set k to whatever you want: because k will finally be
-					// assigned a value
+		TreeNode root = new TreeNode(postorder[postEnd]);
+		int k = 0; // k is whatever, cuz because k will finally have a value
 		for (int i = inStart; i <= inEnd; i++) {
-			if (inorder[i] == postorder[postEnd]) {
+			if (inorder[i] == root.val) {
 				k = i; // k is the target index that separates the inorder array
 			}
 		}
@@ -35,7 +33,6 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
 				postStart + len - 1);
 		root.right = build(inorder, k + 1, inEnd, postorder, postStart + len,
 				postEnd - 1);
-
 		return root;
 	}
 }

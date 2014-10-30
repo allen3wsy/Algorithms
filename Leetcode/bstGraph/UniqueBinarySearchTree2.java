@@ -1,7 +1,10 @@
 package bstGraph;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Hashtable;
 
 public class UniqueBinarySearchTree2 {
 
@@ -9,7 +12,6 @@ public class UniqueBinarySearchTree2 {
 	// http://blog.csdn.net/fightforyourdream/article/details/17345795
 	// output all combinations: DFS
 	// output number: DP
-
 	public List<TreeNode> generateTrees(int n) {
 		return generateTrees(1, n);
 	}
@@ -18,12 +20,11 @@ public class UniqueBinarySearchTree2 {
 		ArrayList<TreeNode> list = new ArrayList<TreeNode>();
 		if (start > end) { // if start == end, then go to the for loop
 			list.add(null); // which is like a place holder !!! (can't be null)
-			return list; // then this list only has one TreeNode(which is null)
+			return list; // This List only has ONE TreeNode(null)
 		}
-
 		// [1, 3]
 		for (int i = start; i <= end; i++) {
-			// there are at least one for left or right
+			// there are at least one for left or right !
 			ArrayList<TreeNode> lefts = generateTrees(start, i - 1);
 			ArrayList<TreeNode> rights = generateTrees(i + 1, end);
 
@@ -36,6 +37,10 @@ public class UniqueBinarySearchTree2 {
 				}
 			}
 		}
-		return list;
+		return list; // every time we should return a list (list of nodes)
+	}
+
+	public static void main(String[] args) {
+
 	}
 }

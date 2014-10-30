@@ -20,7 +20,6 @@ public class MultiplyTwoInteger {
 			count++;
 			small = small >> 1;
 		}
-
 		return result; // SHOULD CONSIDER INT OVERFLOW !!!
 	}
 

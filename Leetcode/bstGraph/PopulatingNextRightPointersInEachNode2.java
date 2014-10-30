@@ -10,7 +10,6 @@ public class PopulatingNextRightPointersInEachNode2 {
 			val = x;
 		}
 	}
-
 	// TEST CASE: [0, 2, 4, 1, #, 3, -1, 5, 1, #, 6, #, 8] FINDING the next
 	// point is the most important !!
 	public void connect(TreeLinkNode root) {
@@ -45,7 +44,6 @@ public class PopulatingNextRightPointersInEachNode2 {
 				root.left.next = root.right;
 			}
 		}
-
 		connect(root.right); // key point: FIRST RIGHT, THEN LEFT !!!
 		connect(root.left);
 	}

@@ -33,7 +33,6 @@ public class MergeTwoSortedLists {
 		} else { // p1 != null, p2 == null
 			p.next = p1;
 		}
-
 		return fakeHead.next;
 	}
 }

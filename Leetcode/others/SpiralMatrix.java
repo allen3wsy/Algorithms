@@ -1,8 +1,9 @@
 package others;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class SpiralMatrix {
+public class SpiralMatrix implements Serializable{
 
 	// http://www.programcreek.com/2013/01/leetcode-spiral-matrix-java/
 	public ArrayList<Integer> spiralOrder(int[][] matrix) {
@@ -54,8 +55,10 @@ public class SpiralMatrix {
 			m = m - 2;
 			n = n - 2;
 		}
-
 		return result;
-
+	}
+	
+	public static void main(String[] args) {
+		
 	}
 }

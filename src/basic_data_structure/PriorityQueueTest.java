@@ -17,9 +17,8 @@ public class PriorityQueueTest {
 		PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
 
 		// use offer() method to add elements to the PriorityQueue pq1
-		for (int x : ia) {
+		for (int x : ia)
 			minHeap.offer(x);
-		}
 
 		System.out.println("pq1: " + minHeap);
 
