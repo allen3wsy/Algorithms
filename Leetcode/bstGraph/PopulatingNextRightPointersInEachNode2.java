@@ -10,39 +10,35 @@ public class PopulatingNextRightPointersInEachNode2 {
 			val = x;
 		}
 	}
+
 	// TEST CASE: [0, 2, 4, 1, #, 3, -1, 5, 1, #, 6, #, 8] FINDING the next
 	// point is the most important !!
 	public void connect(TreeLinkNode root) {
-		// Note: The Solution object is instantiated only once and is reused by
-		// each test case.
 		if (root == null)
 			return;
 
-		// this part is find the effective "NEXT" node FOR root's children
+		// keep going right til p is null p is null or p's children is valid
 		TreeLinkNode p = root.next;
 		while (p != null) {
 			if (p.left != null) {
 				p = p.left;
-				break;
+				break; // after breaking, p is a valid node
 			}
 			if (p.right != null) {
 				p = p.right;
-				break;
+				break; // after breaking, p is a valid node
 			}
 			p = p.next;
 		} // p can be null!!! NOTICE !!!
 
-		// FIRST RIGHT, THEN LEFT !!!
-		if (root.right != null) {
+		if (root.right != null) // FIRST RIGHT !!!
 			root.right.next = p;
-		}
 
-		if (root.left != null) {
-			if (root.right == null) {
+		if (root.left != null) { // THEN LEFT !!!
+			if (root.right == null)
 				root.left.next = p;
-			} else {
+			else
 				root.left.next = root.right;
-			}
 		}
 		connect(root.right); // key point: FIRST RIGHT, THEN LEFT !!!
 		connect(root.left);

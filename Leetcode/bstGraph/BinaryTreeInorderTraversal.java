@@ -18,7 +18,6 @@ public class BinaryTreeInorderTraversal {
                 stack.push(current);
                 current = current.left;
             }
-            
             // right now current == null
             if(!stack.isEmpty()) {
                 current = stack.pop();

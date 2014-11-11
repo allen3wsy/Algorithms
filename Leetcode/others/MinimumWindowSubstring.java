@@ -19,6 +19,7 @@ public class MinimumWindowSubstring {
          // initializing 2 hashMaps !!!
          for(int i = 0; i < T.length(); i++) {
              alreadyFound.put(T.charAt(i), 0); // don't forget to init this map
+             
              // needFind hashMap will never change once initialized !!!
              if (needFind.containsKey(T.charAt(i)))
                  needFind.put(T.charAt(i), needFind.get(T.charAt(i)) + 1);

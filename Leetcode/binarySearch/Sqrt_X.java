@@ -27,5 +27,6 @@ public class Sqrt_X {
 	}
 	public static void main(String[] args) {
 //		BinarySearch.main(args);
+		
 	}
 }

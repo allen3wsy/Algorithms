@@ -16,8 +16,8 @@ public class A_ZToNumber {
 		}
 		return builder.reverse().toString();
 	}
-	
+
 	public static void main(String[] args) {
-		
+
 	}
 }

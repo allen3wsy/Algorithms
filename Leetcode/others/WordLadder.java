@@ -24,9 +24,11 @@ public class WordLadder {
 			// there are 2 for loops here: O(26N)
 			for (int i = 0; i < currWord.length(); i++) {
 				char[] currCharArray = currWord.toCharArray();
+				
 				for (char c = 'a'; c <= 'z'; c++) { // this loop is important
 					currCharArray[i] = c;
 					String newWord = new String(currCharArray);
+					
 					if (dict.contains(newWord)) {
 						wordQueue.add(newWord);
 						distanceQueue.add(currDistance + 1);

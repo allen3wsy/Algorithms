@@ -3,7 +3,7 @@ package bstGraph;
 public class PathSum {
 
 	/**
-	 * using BFS to solve the problem
+	 * using DFS to solve the problem
 	 */
 	public boolean hasPathSum(TreeNode root, int sum) {
 		if (root == null)

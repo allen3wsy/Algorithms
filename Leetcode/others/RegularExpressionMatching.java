@@ -28,7 +28,6 @@ package others;
  * Analysis: http://leetcode.com/2011/09/regular-expression-matching.html
  */
 
-
 public class RegularExpressionMatching {
     
 	public boolean isMatch(String s, String p) {
@@ -40,8 +39,7 @@ public class RegularExpressionMatching {
             if (s.length() < 1 || (p.charAt(0) != '.' && s.charAt(0) != p.charAt(0)))
                 return false;
             return isMatch(s.substring(1), p.substring(1));
-        }
-        else {
+        } else {
             int len = s.length();
             int i = -1;
             while (i < len && (i < 0 || p.charAt(0) == '.' || p.charAt(0) == s.charAt(i))) {
@@ -49,7 +47,6 @@ public class RegularExpressionMatching {
                     return true;
                 i++;
             }
-
             return false;
         }
     }

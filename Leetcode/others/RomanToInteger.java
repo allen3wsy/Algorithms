@@ -17,9 +17,8 @@ public class RomanToInteger {
 		m.put('I', 1);
 
 		char[] charArray = s.toCharArray();
-		int res = m.get(charArray[s.length() - 1]);
-
-		for (int i = 0; i < charArray.length - 1; i++) {
+		int res = 0;
+		for (int i = 0; i < charArray.length - 1; i++) { // except the last one
 			int sign;
 			if (m.get(charArray[i]) < m.get(charArray[i + 1]))
 				sign = -1;
@@ -27,6 +26,7 @@ public class RomanToInteger {
 				sign = 1;
 			res += m.get(charArray[i]) * sign;
 		}
+		res += m.get(charArray[s.length() - 1]); // the rightmost digit
 		return res;
 	}
 

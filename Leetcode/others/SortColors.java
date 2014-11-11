@@ -10,23 +10,22 @@ public class SortColors {
 
 		// i should not be larger than blue
 		while (i <= blue) {
-			if (A[i] == 0) {	// 0 means RED
-				swap(A, i, red);  // swap A[i] and A[red], increase i and red
+			if (A[i] == 0) { // 0 means RED
+				swap(A, i, red); // swap A[i] and A[red], increase i and red
 				red++;
 				i++;
-			} else if (A[i] == 2) {	// 2 means BLUE
+			} else if (A[i] == 2) { // 2 means BLUE
 				swap(A, i, blue); // swap A[i] and A[blue], BUT DON'T decrease i
 				blue--;
-
 			} else {
 				i++; // white, do nothing but increase i
 			}
 		}
 	}
-	
+
 	public void swap(int[] array, int left, int right) {
 		int temp = array[left];
 		array[left] = array[right];
-		array[right] = temp; 
+		array[right] = temp;
 	}
 }

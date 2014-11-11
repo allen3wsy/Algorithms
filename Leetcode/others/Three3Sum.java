@@ -7,14 +7,15 @@ public class Three3Sum {
 
 	public static ArrayList<ArrayList<Integer>> threeSum(int[] num) {
 		ArrayList<ArrayList<Integer>> result = new ArrayList<ArrayList<Integer>>();
-		if (num.length <= 2)
+		if (num == null || num.length <= 2)
 			return result;
 		Arrays.sort(num);
 
 		for (int i = 0; i < num.length - 2; i++) {
 			// THIS LINE IS EXTREMELY IMPORTANT: avoid duplicate solutions
 			if (i != 0 && num[i] == num[i - 1]) 
-				continue; // avoid duplicates
+				continue; // avoid duplicates !!!
+			
 			// APPLY 2 SUM here:
 			int negate = -num[i];
 			int left = i + 1;

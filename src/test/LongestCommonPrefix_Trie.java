@@ -12,7 +12,6 @@ import java.util.HashMap;
 
 /**
  * Solution class for Leetcode
- * 
  * @author AllenNg
  */
 public class LongestCommonPrefix_Trie {
@@ -27,7 +26,6 @@ public class LongestCommonPrefix_Trie {
 
 /**
  * Actually don't have to have "char value"
- * 
  * @author AllenNg
  */
 class TrieNode {

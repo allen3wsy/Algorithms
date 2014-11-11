@@ -2,6 +2,8 @@ package others;
 
 public class ImplementStrStr {
 
+	// new: change a little bit is enough
+	// old 
 	public static String strStr(String haystack, String needle) {
 		int needleLen = needle.length();
 		int haystackLen = haystack.length();

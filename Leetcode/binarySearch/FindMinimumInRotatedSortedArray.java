@@ -20,7 +20,7 @@ public class FindMinimumInRotatedSortedArray {
                 end = mid; // then search left part(including mid)
             }
         }
-        return num[start];
+        return num[start]; // when start == end
     }
 	
 	public static void main(String[] args) {
