@@ -26,9 +26,7 @@ public class Permutation {
 
 			out.append(in.charAt(i));
 			used[i] = true;
-
 			permute(in, used, out);
-
 			used[i] = false;
 			out.setLength(out.length() - 1);
 		}
@@ -37,6 +35,5 @@ public class Permutation {
 	public static void main(String[] args) {
 		permutation("abcd");
 	}
-	
 	
 }

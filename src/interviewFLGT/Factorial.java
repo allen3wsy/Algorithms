@@ -27,6 +27,8 @@ public class Factorial {
 
 	public static void main(String[] args) {
 		int num = 48;
-		System.out.println(findAllFactorial(48));
+		System.out.println(findAllFactorial(num));
 	}
+	
+	
 }

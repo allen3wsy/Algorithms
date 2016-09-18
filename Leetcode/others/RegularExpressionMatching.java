@@ -36,13 +36,14 @@ public class RegularExpressionMatching {
 
         // p's length 1 is special case
         if (p.length() == 1 || p.charAt(1) != '*') {
-            if (s.length() < 1 || (p.charAt(0) != '.' && s.charAt(0) != p.charAt(0)))
+            if (s.length() == 0 || (p.charAt(0) != '.' && s.charAt(0) != p.charAt(0)))
                 return false;
             return isMatch(s.substring(1), p.substring(1));
-        } else {
+        } else { // p.length() >= 2 && p.charAt(1) == '*' (there is 'star')
             int len = s.length();
             int i = -1;
-            while (i < len && (i < 0 || p.charAt(0) == '.' || p.charAt(0) == s.charAt(i))) {
+            
+            while (i < len && (i < 0 || p.charAt(0) == '.' || s.charAt(i) == p.charAt(0))) {
                 if (isMatch(s.substring(i + 1), p.substring(2)))
                     return true;
                 i++;

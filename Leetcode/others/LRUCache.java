@@ -3,26 +3,26 @@ package others;
 import java.util.HashMap;
 
 public class LRUCache {
-	
+
 	// http://www.programcreek.com/2013/03/leetcode-lru-cache-java/
-	private int length;		// should be originally 0
+	private int length; // should be originally 0
 	private int capacity;
-	
+
 	private HashMap<Integer, DoubleLinkedListNode> map = new HashMap<Integer, DoubleLinkedListNode>();
 
 	private DoubleLinkedListNode head;
 	private DoubleLinkedListNode end;
 
 	public LRUCache(int capacity) {
-		this.capacity = capacity;	// set the max capacity
-		length = 0;					// Don't forget to set length = 0
+		this.capacity = capacity; // set the max capacity
+		length = 0; // Don't forget to set length = 0
 	}
 
 	public int get(int key) {
 		if (map.containsKey(key)) {
 			DoubleLinkedListNode node = map.get(key);
 			removeNode(node); // don't forget (diff from normal hashmap)
-			setHead(node);    // don't forget (diff from normal hashmap)
+			setHead(node); // don't forget (diff from normal hashmap)
 			return node.val;
 		} else {
 			return -1;
@@ -31,21 +31,22 @@ public class LRUCache {
 
 	public void set(int key, int value) {
 
-		if (map.containsKey(key)) {
+		if (map.containsKey(key)) { // only update it !!!
 			DoubleLinkedListNode oldNode = map.get(key);
-			oldNode.val = value;		// can use setter as well !!!
+			oldNode.val = value; // can use setter as well !!!
 			removeNode(oldNode);
 			setHead(oldNode);
-		} else {  // !map.containsKey(key)
+		} else { // !map.containsKey(key)
 			DoubleLinkedListNode newNode = new DoubleLinkedListNode(key, value);
-			
+
 			if (length < capacity) {
 				setHead(newNode);
 				map.put(key, newNode);
 				length++;
-			} else {  // length == capacity (length won't be bigger than capacity)
-				map.remove(end.key); // THIS IS WHY WE HAVE TO PUT (KEY, VALUE) into DoubleLinkedListNode !!!
-				removeNode(end); 	 // Allen's !!!
+			} else { // length == capacity (length always <= capacity)
+				map.remove(end.key); // THIS IS WHY WE HAVE TO PUT (KEY, VALUE)
+										// into DoubleLinkedListNode !!!
+				removeNode(end); // Allen's !!!
 				setHead(newNode);
 				map.put(key, newNode);
 			}
@@ -81,8 +82,7 @@ public class LRUCache {
 		}
 		head = node;
 
-		if (end == null) { // this is for the first node inserted (ONLY the
-							// first time !!!)
+		if (end == null) { // (ONLY the first time !!!)
 			end = node;
 		}
 	}

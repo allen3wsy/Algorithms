@@ -62,7 +62,7 @@ public class ReverseALinkedList {
 		}
 
 		head.next = null; // don't forget this last essential step !!!
-		return head;
+		return pre; // pre is the new head!!!
 	}
 	
 	public static void printList(ListNode listNode) {

@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 public class EvenIterator implements Iterator<Integer> {
 	private Iterator<Integer> iter;
 	private Integer nextEven = null;
-
+	
 	public EvenIterator(Iterator<Integer> iter) {
 		this.iter = iter;
 		advance();

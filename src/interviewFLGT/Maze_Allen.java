@@ -51,7 +51,6 @@ public class Maze_Allen {
 				intQueue.add(distance + 1);
 				helper[curRow][curCol + 1] = true; // visit it
 			}
-
 		}
 	}
 
