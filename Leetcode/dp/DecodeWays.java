@@ -27,6 +27,10 @@ public class DecodeWays {
 	}
 
 	public static boolean isValid(String s) { // the length must be length 1 to 2
+		// this if block is optional.
+		if (s.length() != 1 && s.length() != 2)
+			return false;
+		
 		if (s.charAt(0) == '0') // if it is like: 01, 02 then NOT valid !!!!
 			return false;
 		int code = Integer.parseInt(s);
@@ -34,6 +38,6 @@ public class DecodeWays {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(numDecodings("2121"));
+		System.out.println("num of decode ways: " + numDecodings("2121"));
 	}
 }

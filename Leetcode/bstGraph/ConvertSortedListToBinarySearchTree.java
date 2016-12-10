@@ -18,7 +18,7 @@ public class ConvertSortedListToBinarySearchTree {
 		}
 	}
 	
-	static ListNode list;
+//	static ListNode listNode;
 
 	public static TreeNode sortedListToBST(ListNode head) {
 		ListNode r = head;
