@@ -1,9 +1,8 @@
 package bstGraph;
 
 /**
- * Another Question:
- * Convert BST to circular Doubly-linkedList !!!
- * http://articles.leetcode.com/convert-binary-search-tree-bst-to/ 
+ * Another Question: Convert BST to circular Doubly-linkedList !!!
+ * http://articles.leetcode.com/convert-binary-search-tree-bst-to/
  *
  */
 // construct the tree bottom-up (not top-down)
@@ -13,13 +12,16 @@ public class ConvertSortedListToBinarySearchTree {
 	public class ListNode {
 		int val;
 		ListNode next;
+
 		public ListNode(int i) {
 			val = i;
 		}
 	}
-	
-//	static ListNode listNode;
 
+	// static ListNode listNode;
+	/**
+	 * Method 1!!!
+	 */
 	public static TreeNode sortedListToBST(ListNode head) {
 		ListNode r = head;
 		int length = 0;
@@ -49,22 +51,25 @@ public class ConvertSortedListToBinarySearchTree {
 		parent.right = sortedBST(list, middle + 1, end);
 		return parent;
 	}
-	
-	
-	ListNode h; // outside 
+
+	/**
+	 * Method 2!!!
+	 */
+	ListNode h; // outside
+
 	// build tree bottom-up
 	public TreeNode sortedListToBST(int start, int end) {
 		if (start > end)
 			return null;
 		// mid
 		int mid = (start + end) / 2;
- 
+
 		TreeNode root = new TreeNode(h.val);
 		root.left = sortedListToBST(start, mid - 1);
 		root.right = sortedListToBST(mid + 1, end);
-		
+
 		h = h.next;
-		
+
 		return root;
 	}
 }

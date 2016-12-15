@@ -5,28 +5,37 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class FindMedian {
-	
-	public static void printMedian(int i, PriorityQueue<Integer> minHeap, PriorityQueue<Integer> maxHeap) {
-		
-		if(maxHeap.size() == 0 && minHeap.size() == 0) {
+
+	/**
+	 * @param i
+	 * @param minHeap
+	 *            store the larger half of the numbers
+	 * @param maxHeap
+	 *            store the smaller half of the numbers
+	 */
+	public static void printMedian(int i, PriorityQueue<Integer> minHeap,
+			PriorityQueue<Integer> maxHeap) {
+
+		if (maxHeap.size() == 0 && minHeap.size() == 0) {
 			maxHeap.offer(i);
-		} else if(i > maxHeap.peek()) {		// maxHeap.size() ALWAYS >= 0 
+		} else if (i > maxHeap.peek()) { // maxHeap.size() ALWAYS >= 0
 			minHeap.offer(i);
-		} else {
+		} else { // i <= maxHeap.peek()
 			maxHeap.offer(i);
 		}
-		
+
 		// balancing the sizes of the 2 heaps
-		if(maxHeap.size() - minHeap.size() >= 2) {
+		if (maxHeap.size() - minHeap.size() >= 2) {
 			minHeap.offer(maxHeap.poll());
 		} else if (minHeap.size() - maxHeap.size() >= 2) {
 			maxHeap.offer(minHeap.poll());
 		}
-		
+
 		// print the medians (1 or 2)
-		if(maxHeap.size() == minHeap.size())	{
-			System.out.println("Two medians: " + maxHeap.peek() + " and " + minHeap.peek());
-		} else if(maxHeap.size() > minHeap.size()) {
+		if (maxHeap.size() == minHeap.size()) {
+			System.out.println("Two medians: " + maxHeap.peek() + " and "
+					+ minHeap.peek());
+		} else if (maxHeap.size() > minHeap.size()) {
 			System.out.println("Median is " + maxHeap.peek());
 		} else {
 			System.out.println("Median is " + minHeap.peek());
@@ -42,10 +51,11 @@ public class FindMedian {
 				return i2 - i1;
 			}
 		};
-		
-		PriorityQueue<Integer> maxHeap = new PriorityQueue<>(1, descendingComparator);
-		
-		while(true) {
+
+		PriorityQueue<Integer> maxHeap = new PriorityQueue<>(1,
+				descendingComparator);
+
+		while (true) {
 			System.out.println("please input an Integer: ");
 			printMedian(scanner.nextInt(), minHeap, maxHeap);
 		}

@@ -9,12 +9,12 @@ public class SortByteNumbers {
 	public static ArrayList<Byte> sortBytes(ArrayList<Byte> bytes) {
 		ArrayList<Byte> result = new ArrayList<Byte>();
 		boolean[] arr = new boolean[256];
-		
-		for(Byte num : bytes) {
+
+		for (Byte num : bytes) {
 			arr[num + 128] = true;
 		}
-		for(int i = 0; i < arr.length; i++) {
-			if(arr[i]) {
+		for (int i = 0; i < arr.length; i++) {
+			if (arr[i]) {
 				result.add((byte) (i - 128));
 			}
 		}

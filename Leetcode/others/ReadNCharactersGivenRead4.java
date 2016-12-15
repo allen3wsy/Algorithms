@@ -21,12 +21,16 @@ public class ReadNCharactersGivenRead4 extends Reader4 {
 	public int read(char[] buf, int n) {
 		int count = 0;
 		char[] mybuf = new char[4];
-		while (count < n) {
+		while (count <= n - 1) {
 			int num = read4(mybuf);
-			if (num == 0)
+			// If at any time, num == 0, which means cannot read anymore, then
+			// we break the while loop, return count(the number of char read.)
+			if (num == 0) {
 				break;
+			}
+
 			int index = 0;
-			while (index < num && count < n) {
+			while (index <= num - 1 && count <= n - 1) {
 				buf[count++] = mybuf[index++];
 			}
 		}
@@ -42,7 +46,9 @@ public class ReadNCharactersGivenRead4 extends Reader4 {
  * fake one...
  */
 abstract class Reader4 {
+
+	// It should technically return other value instead of 0;
 	int read4(char[] buf) {
-		return 0;
+		return 0; // It is only 0 because it doesn't know what to return here.
 	}
 }

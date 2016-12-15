@@ -3,25 +3,28 @@ package bstGraph;
 import java.util.ArrayList;
 import java.util.Stack;
 
+//  2
+// 1 3
+// preOrder's output: 2, 1, 3
 public class BinaryTreePreorderTraversal {
 
 	public ArrayList<Integer> preorderTraversal(TreeNode root) {
 
-		ArrayList<Integer> arr = new ArrayList<Integer>();
-		Stack<TreeNode> s = new Stack<TreeNode>();
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		Stack<TreeNode> stack = new Stack<TreeNode>();
 		if (root != null)
-			s.push(root);
+			stack.push(root);
 
-		while (!s.isEmpty()) {
-			TreeNode temp = s.pop();
-			arr.add(temp.val);
+		while (!stack.isEmpty()) {
+			TreeNode temp = stack.pop();
+			list.add(temp.val);
 
 			if (temp.right != null)
-				s.push(temp.right);
+				stack.push(temp.right);
 			if (temp.left != null)
-				s.push(temp.left);
+				stack.push(temp.left);
 		}
 
-		return arr;
+		return list;
 	}
 }

@@ -29,11 +29,11 @@ public class QuickSelect {
 		return storeIndex; // which is the pivot index to return
 	}
 
-	// return n-th smallest element: [0, N - 1]: zero-based
+	// return k-th smallest element: [0, k - 1]: zero-based
 	public static int quickSelect(int[] num, int k) {
 		int start = 0;
 		int end = num.length - 1;
-		
+
 		// a little bit like binary search
 		while (start <= end) {
 			int pivotIndex = partition(num, start, end);
@@ -50,6 +50,6 @@ public class QuickSelect {
 
 	public static void main(String[] args) {
 		int[] array = { 1, 4, 3, 2, 5 };
-		System.out.println(quickSelect(array, 0));
+		System.out.println(quickSelect(array, 3));
 	}
 }

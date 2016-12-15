@@ -15,7 +15,7 @@ public class NextPermutation {
 	public static void nextPermutation(int[] num) {
 		if (num == null || num.length == 0)
 			return;
-		int i = num.length - 2; // start from the end...
+		int i = num.length - 2; // start from the right end - 1
 		while (i >= 0 && num[i] >= num[i + 1]) { // increasing order
 			i--;
 		} // num[i] right now is either the conflict number or the first number
