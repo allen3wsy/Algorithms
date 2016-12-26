@@ -1,5 +1,11 @@
 package others;
 
+/**
+ * 3 way partition Classic Dutch National Flag Problem.
+ * 
+ * @author AllenNg
+ *
+ */
 public class SortColors {
 
 	// KEY POINTS:
@@ -17,7 +23,7 @@ public class SortColors {
 			} else if (A[i] == 2) { // 2 means BLUE
 				swap(A, i, blue); // swap A[i] and A[blue], BUT DON'T decrease i
 				blue--;
-			} else {
+			} else { // 1 is white...
 				i++; // white, do nothing but increase i
 			}
 		}
